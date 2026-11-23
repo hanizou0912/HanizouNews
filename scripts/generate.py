@@ -100,4 +100,158 @@ def generate_edition(client: genai.Client, mode: str, interests: str, raw_news: 
 - deep_dives は必ず2本作成すること：
   1本目: 株・経済（category_key: "stock"）— ニュースの背景から二次的な波及先・逆張り視点まで丁寧に解説
   2本目: AI・テック（category_key: "ai"）— 技術の本質と今後1〜3年の構造変化を丁寧に解説
-- quick
+- quick_radars は必ず4本作成すること：
+  ゲーム関連2本（category_key: "game"）＋ 世間の話題・無関係枠2本（category_key: "trend"）。
+- すべて自然な日本語で、前提知識がなくてもスッと頭に入る粒度で書くこと。
+- 記事のURLは必ずニュース一覧にある実在のURLをそのまま使うこと。
+"""
+
+    prompt = f"""
+{instruction}
+
+【ユーザーの関心メモ】
+{interests}
+
+【取得した最新ニュース一覧】
+{raw_news}
+"""
+
+    active_models = list(dict.fromkeys([
+        MODEL_NAME,
+        "gemini-3.5-flash-lite",
+        "gemini-3.8-flash",
+    ]))
+    wait_schedule = [30, 60, 120]  # 合計4巡（最大約3.5分待機して混雑スパイクを回避）
+
+    last_error = None
+    for round_idx in range(len(wait_schedule) + 1):
+        for model_name in list(active_models):
+            try:
+                print(f"モデル試行中: {model_name} (ラウンド {round_idx + 1}/{len(wait_schedule) + 1})")
+                response = client.models.generate_content(
+                    model=model_name,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json",
+                        response_schema=EditionOutput,
+                        temperature=0.5,
+                    ),
+                )
+                print(f"生成成功: {model_name}")
+                return EditionOutput.model_validate_json(response.text)
+            except Exception as e:
+                last_error = e
+                msg = str(e)
+                if "404" in msg or "NOT_FOUND" in msg:
+                    print(f"{model_name} は利用不可のため候補から除外します")
+                    active_models.remove(model_name)
+                else:
+                    print(f"{model_name} 失敗 ({type(e).__name__}): 次の候補へ移ります")
+
+        if not active_models:
+            break
+        if round_idx < len(wait_schedule):
+            wait = wait_schedule[round_idx]
+            print(f"全モデル混雑中のため {wait} 秒待機して再試行します...")
+            time.sleep(wait)
+
+    raise last_error
+
+
+def render_html(mode: str, data: EditionOutput, date_str: str) -> str:
+    env = Environment(loader=FileSystemLoader(str(BASE_DIR / "templates")))
+    template = env.get_template("page.html")
+    return template.render(
+        mode=mode,
+        page_title="MS仕事用" if mode == "work" else "私生活用",
+        edition_label="MS WORK EDITION" if mode == "work" else "LIFE & SIGNAL EDITION",
+        date_str=date_str,
+        data=data,
+    )
+
+
+def notify_discord(webhook_url: str, title: str, page_url: str, data: EditionOutput):
+    if not webhook_url:
+        print(f"Webhook未設定のため通知スキップ: {title}")
+        return
+    headlines = "\n".join([f"・**{a.title}**" for a in data.deep_dives])
+    radars = "\n".join([f"・{r.title}" for r in data.quick_radars[:2]])
+    content = (
+        f"## {title}\n"
+        f"**【Deep Dive】**\n{headlines}\n\n"
+        f"**【Quick Radar ほか】**\n{radars}\n\n"
+        f"👉 **紙面を読む:** {page_url}"
+    )
+    res = requests.post(webhook_url, json={"content": content}, timeout=15)
+    res.raise_for_status()
+    print(f"Discord通知完了: {title}")
+
+
+def main():
+    api_key = os.environ["GEMINI_API_KEY"]
+    client = genai.Client(
+        api_key=api_key,
+        http_options=types.HttpOptions(timeout=60000),
+    )
+
+    jst = datetime.timezone(datetime.timedelta(hours=9))
+    now = datetime.datetime.now(jst)
+    date_str = now.strftime("%Y/%m/%d (%a)")
+    target = os.environ.get("TARGET_EDITION", "both")  # both / work / life
+
+    interests = (BASE_DIR / "config" / "interests.txt").read_text(encoding="utf-8")
+    feeds = yaml.safe_load((BASE_DIR / "config" / "feeds.yaml").read_text(encoding="utf-8"))
+
+    DOCS_DIR.mkdir(exist_ok=True)
+    repo_full = os.environ.get("GITHUB_REPOSITORY", "")
+    if "/" in repo_full:
+        owner, repo = repo_full.split("/", 1)
+        base_url = f"https://{owner}.github.io/{repo}"
+    else:
+        base_url = "https://example.com"
+
+    modes = ["work", "life"] if target == "both" else [target]
+    succeeded = []
+    failed = []
+
+    for mode in modes:
+        print(f"=== {mode} 版を生成中 ===")
+        try:
+            raw_news = fetch_articles(feeds[mode])
+            edition = generate_edition(client, mode, interests, raw_news)
+            html = render_html(mode, edition, date_str)
+            (DOCS_DIR / f"{mode}.html").write_text(html, encoding="utf-8")
+
+            if mode == "work":
+                notify_discord(
+                    os.environ.get("DISCORD_WEBHOOK_WORK", ""),
+                    f"💼 MS Work Brief ({date_str})",
+                    f"{base_url}/work.html",
+                    edition,
+                )
+            else:
+                notify_discord(
+                    os.environ.get("DISCORD_WEBHOOK_LIFE", ""),
+                    f"🌐 Daily Signal ({date_str})",
+                    f"{base_url}/life.html",
+                    edition,
+                )
+            succeeded.append(mode)
+        except Exception as e:
+            print(f"!!! {mode} 版の生成に失敗しました: {e}")
+            failed.append(mode)
+
+    # ルートURLを開いたときに life.html へ自動移動するページを配置
+    index_html = '<meta http-equiv="refresh" content="0; url=./life.html">'
+    (DOCS_DIR / "index.html").write_text(index_html, encoding="utf-8")
+
+    if not succeeded:
+        raise RuntimeError(f"すべての版の生成に失敗しました: {failed}")
+    if failed:
+        print(f"一部失敗しましたが、成功分（{succeeded}）を公開します（失敗: {failed}）")
+    else:
+        print("すべて完了しました！")
+
+
+if __name__ == "__main__":
+    main()
