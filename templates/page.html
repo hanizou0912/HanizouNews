@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark" data-size="normal">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page_title }} | DAILY SIGNAL</title>
+  <style>
+    :root {
+      --bg: #0B0F19;
+      --card: #131A2A;
+      --nest: #1A2338;
+      --border: #24304A;
+      --text: #E6EDF7;
+      --muted: #94A3B8;
+      --accent-ms: #818CF8;
+      --accent-stock: #34D399;
+      --accent-ai: #38BDF8;
+      --accent-game: #A78BFA;
+      --accent-trend: #FBBF24;
+      --rose-bg: rgba(244, 63, 94, 0.10);
+      --rose-border: rgba(244, 63, 94, 0.45);
+      --rose-text: #FDA4AF;
+    }
+    [data-theme="light"] {
+      --bg: #F4F6FA;
+      --card: #FFFFFF;
+      --nest: #F1F5F9;
+      --border: #CBD5E1;
+      --text: #0F172A;
+      --muted: #475569;
+      --rose-bg: #FFF1F2;
+      --rose-border: #FDA4AF;
+      --rose-text: #9F1239;
+    }
+    [data-size="large"] { font-size: 18px; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding-bottom: 96px;
+    }
+    a { color: var(--accent-ai); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11, 15, 25, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    [data-theme="light"] header { background: rgba(244, 246, 250, 0.92); }
+    .header-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .brand { display: flex; flex-direction: column; }
+    .brand-title { font-weight: 800; letter-spacing: 0.06em; font-size: 1.05rem; }
+    .brand-sub { font-size: 0.78rem; color: var(--muted); }
+
+    .nav-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tab-link {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .tab-link.active {
+      background: var(--accent-ms);
+      color: #0B0F19;
+      border-color: transparent;
+    }
+    .ctrl-btn {
+      background: var(--nest);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    main { max-width: 920px; margin: 24px auto; padding: 0 16px; }
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin: 28px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 0.78rem;
+    }
+    .badge {
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.74rem;
+      color: #0B0F19;
+    }
+    .badge-ms { background: var(--accent-ms); }
+    .badge-stock { background: var(--accent-stock); }
+    .badge-ai { background: var(--accent-ai); }
+    .badge-game { background: var(--accent-game); }
+    .badge-trend { background: var(--accent-trend); }
+    .tag {
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--nest);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    h2.article-title {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      line-height: 1.45;
+    }
+    .block {
+      background: var(--nest);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .block-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+    .block p { margin: 0; font-size: 0.95rem; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .flow-step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+    }
+    .flow-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-ai);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .glossary { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .chip {
+      background: var(--nest);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .chip.open { border-color: var(--accent-ai); color: var(--accent-ai); }
+    .glossary-box {
+      display: none;
+      background: var(--nest);
+      border-left: 3px solid var(--accent-ai);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+    }
+
+    .contrarian {
+      background: var(--rose-bg);
+      border: 1px solid var(--rose-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 12px;
+    }
+    .contrarian .block-title { color: var(--rose-text); }
+
+    .card-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.84rem;
+    }
+    .memo-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+    .memo-btn.saved {
+      background: var(--accent-stock);
+      color: #0B0F19;
+      border-color: transparent;
+      font-weight: 700;
+    }
+
+    .radar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .radar-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .radar-title { margin: 8px 0; font-size: 1.02rem; line-height: 1.45; }
+    .radar-body { font-size: 0.9rem; color: var(--text); margin: 0 0 10px; }
+    .radar-why { font-size: 0.82rem; color: var(--muted); background: var(--nest); padding: 8px 10px; border-radius: 8px; }
+
+    .column-card {
+      background: linear-gradient(135deg, rgba(129, 140, 248, 0.12), rgba(56, 189, 248, 0.08));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .memo-bar {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E293B;
+      color: #F8FAFC;
+      border: 1px solid var(--accent-stock);
+      border-radius: 999px;
+      padding: 10px 18px;
+      display: none;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      z-index: 50;
+      font-size: 0.88rem;
+    }
+    .memo-bar button {
+      background: var(--accent-stock);
+      color: #0B0F19;
+      border: none;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-title">DAILY SIGNAL — {{ edition_label }}</span>
+        <span class="brand-sub">{{ date_str }} 発行</span>
+      </div>
+      <div class="nav-group">
+        <a class="tab-link {% if mode == 'work' %}active{% endif %}" href="./work.html">💼 MS仕事用</a>
+        <a class="tab-link {% if mode == 'life' %}active{% endif %}" href="./life.html">🌐 私生活用</a>
+        <button class="ctrl-btn" onclick="toggleSize()">A / A+</button>
+        <button class="ctrl-btn" onclick="toggleTheme()">🌙 / ☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-label">Deep Dive — 構造から読み解く</div>
+    {% for item in data.deep_dives %}
+    <article class="card">
+      <div class="card-meta">
+        <span class="badge badge-{{ item.category_key }}">{{ item.category_label }}</span>
+        {% for tag in item.tags %}
+        <span class="tag">#{{ tag }}</span>
+        {% endfor %}
+      </div>
+      <h2 class="article-title">{{ item.title }}</h2>
+
+      <div class="block">
+        <div class="block-title">📖 これまでのあらすじ・前提</div>
+        <p>{{ item.background }}</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">🔍 何が起きたか・構造の解説</div>
+        <p>{{ item.structure }}</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⛓️ 因果・影響の連鎖</div>
+        <div class="flow">
+          {% for step in item.causal_flow %}
+          <div class="flow-step">
+            <span class="flow-num">STEP {{ loop.index }}</span>
+            {{ step }}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if item.glossary %}
+      <div class="glossary">
+        {% for term in item.glossary %}
+        <button class="chip" onclick="toggleGlossary(this, 'g-{{ loop.parent.loop.index }}-{{ loop.index }}')">📘 {{ term.term }}</button>
+        {% endfor %}
+      </div>
+      {% for term in item.glossary %}
+      <div id="g-{{ loop.parent.loop.index }}-{{ loop.index }}" class="glossary-box">
+        <strong>{{ term.term }}：</strong>{{ term.meaning }}
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      <div class="contrarian">
+        <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
+        <p>{{ item.contrarian }}</p>
+      </div>
+
+      <div class="card-footer">
+        <a href="{{ item.source_url }}" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <button class="memo-btn" data-title="{{ item.title }}" data-url="{{ item.source_url }}" onclick="toggleMemo(this)">🔖 メモに追加</button>
+      </div>
+    </article>
+    {% endfor %}
+
+    {% if data.quick_radars %}
+    <div class="section-label">Quick Radar — サクッと視野を広げる</div>
+    <div class="radar-grid">
+      {% for r in data.quick_radars %}
+      <article class="radar-card">
+        <div>
+          <div class="card-meta">
+            <span class="badge badge-{{ r.category_key }}">{{ r.category_label }}</span>
+          </div>
+          <h3 class="radar-title">{{ r.title }}</h3>
+          <p class="radar-body">{{ r.summary }}</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>{{ r.why_now }}</div>
+        </div>
+        <div class="card-footer">
+          <a href="{{ r.source_url }}" target="_blank" rel="noopener">元記事 ↗</a>
+          <button class="memo-btn" data-title="{{ r.title }}" data-url="{{ r.source_url }}" onclick="toggleMemo(this)">🔖 メモ</button>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="section-label">Cross Analysis — 編集長コラム</div>
+    <section class="column-card">
+      <h2 class="article-title">{{ data.cross_column.title }}</h2>
+      <p style="margin:0;">{{ data.cross_column.body }}</p>
+    </section>
+  </main>
+
+  <div class="memo-bar" id="memoBar">
+    <span id="memoCount">0件選択中</span>
+    <button onclick="copyMemos()">Discord用にコピー</button>
+  </div>
+
+  <script>
+    const savedMemos = new Map();
+    function toggleTheme() {
+      const root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+    }
+    function toggleSize() {
+      const root = document.documentElement;
+      root.dataset.size = root.dataset.size === "normal" ? "large" : "normal";
+    }
+    function toggleGlossary(btn, id) {
+      const box = document.getElementById(id);
+      const isOpen = box.style.display === "block";
+      box.style.display = isOpen ? "none" : "block";
+      btn.classList.toggle("open", !isOpen);
+    }
+    function toggleMemo(btn) {
+      const title = btn.dataset.title;
+      const url = btn.dataset.url;
+      if (savedMemos.has(title)) {
+        savedMemos.delete(title);
+        btn.classList.remove("saved");
+        btn.textContent = btn.textContent.includes("追加") ? "🔖 メモに追加" : "🔖 メモ";
+      } else {
+        savedMemos.set(title, url);
+        btn.classList.add("saved");
+        btn.textContent = "✓ 追加済";
+      }
+      const bar = document.getElementById("memoBar");
+      document.getElementById("memoCount").textContent = `${savedMemos.size}件選択中`;
+      bar.style.display = savedMemos.size > 0 ? "flex" : "none";
+    }
+    function copyMemos() {
+      const lines = ["**📌 気になったトピック ({{ date_str }})**"];
+      for (const [title, url] of savedMemos.entries()) {
+        lines.push(`- ${title}\n  ${url}`);
+      }
+      navigator.clipboard.writeText(lines.join("\n")).then(() => {
+        alert("Discord の #interest-log に貼れる形式でコピーしました！");
+      });
+    }
+  </script>
+</body>
+</html>
