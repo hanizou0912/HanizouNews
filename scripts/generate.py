@@ -1,5 +1,6 @@
 import datetime
 import os
+import time
 from pathlib import Path
 from typing import List, Literal
 
@@ -107,16 +108,43 @@ def generate_edition(client: genai.Client, mode: str, interests: str, raw_news: 
 【取得した最新ニュース一覧】
 {raw_news}
 """
-    response = client.models.generate_content(
-        model=MODEL_NAME,
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            response_mime_type="application/json",
-            response_schema=EditionOutput,
-            temperature=0.5,
-        ),
-    )
-    return EditionOutput.model_validate_json(response.text)
+
+    candidate_models = list(dict.fromkeys([
+        MODEL_NAME,
+        "gemini-3.8-flash-lite",
+        "gemini-2.5-flash-lite",
+    ]))
+
+    last_error = None
+    for model_name in candidate_models:
+        for attempt in range(1, 4):
+            try:
+                print(f"モデル試行中: {model_name} ({attempt}/3)")
+                response = client.models.generate_content(
+                    model=model_name,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json",
+                        response_schema=EditionOutput,
+                        temperature=0.5,
+                    ),
+                )
+                return EditionOutput.model_validate_json(response.text)
+            except Exception as e:
+                last_error = e
+                msg = str(e)
+                if "404" in msg or "NOT_FOUND" in msg:
+                    print(f"{model_name} は利用不可のためスキップします")
+                    break
+                if ("503" in msg or "UNAVAILABLE" in msg or "429" in msg) and attempt < 3:
+                    wait = 30 * attempt
+                    print(f"{model_name} 混雑のため {wait} 秒後にリトライします...")
+                    time.sleep(wait)
+                else:
+                    print(f"{model_name} での生成に失敗。次の候補へ移ります")
+                    break
+
+    raise last_error
 
 
 def render_html(mode: str, data: EditionOutput, date_str: str) -> str:
