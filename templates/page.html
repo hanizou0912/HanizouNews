@@ -316,6 +316,7 @@
   <main>
     <div class="section-label">Deep Dive — 構造から読み解く</div>
     {% for item in data.deep_dives %}
+    {% set article_idx = loop.index %}
     <article class="card">
       <div class="card-meta">
         <span class="badge badge-{{ item.category_key }}">{{ item.category_label }}</span>
@@ -350,11 +351,11 @@
       {% if item.glossary %}
       <div class="glossary">
         {% for term in item.glossary %}
-        <button class="chip" onclick="toggleGlossary(this, 'g-{{ loop.parent.loop.index }}-{{ loop.index }}')">📘 {{ term.term }}</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-{{ article_idx }}-{{ loop.index }}')">📘 {{ term.term }}</button>
         {% endfor %}
       </div>
       {% for term in item.glossary %}
-      <div id="g-{{ loop.parent.loop.index }}-{{ loop.index }}" class="glossary-box">
+      <div id="g-{{ article_idx }}-{{ loop.index }}" class="glossary-box">
         <strong>{{ term.term }}：</strong>{{ term.meaning }}
       </div>
       {% endfor %}
