@@ -228,6 +228,30 @@
       border-top: 1px solid var(--border);
       font-size: 0.84rem;
     }
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .ai-btn {
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      color: var(--accent-ai);
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .ai-btn:hover {
+      background: rgba(56, 189, 248, 0.24);
+    }
+    [data-theme="light"] .ai-btn {
+      background: rgba(2, 132, 199, 0.1);
+      color: #0284C7;
+      border-color: rgba(2, 132, 199, 0.4);
+    }
     .memo-btn {
       background: transparent;
       border: 1px solid var(--border);
@@ -295,6 +319,27 @@
       font-weight: 700;
       cursor: pointer;
     }
+
+    .toast {
+      position: fixed;
+      top: 76px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0F172A;
+      color: #F8FAFC;
+      border: 1px solid var(--accent-ai);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.84rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      z-index: 60;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .toast.show { opacity: 1; }
   </style>
 </head>
 <body>
@@ -319,25 +364,25 @@
     
     <article class="card">
       <div class="card-meta">
-        <span class="badge badge-ms">Microsoft基盤・セキュリティ・管理系</span>
+        <span class="badge badge-ms">Microsoft 基盤・セキュリティ</span>
         
-        <span class="tag">#Intune</span>
+        <span class="tag">#Microsoft Intune</span>
         
         <span class="tag">#Windows Server</span>
         
-        <span class="tag">#クラウド移行</span>
+        <span class="tag">#ハイブリッド運用</span>
         
       </div>
-      <h2 class="article-title">Microsoft IntuneによるWindows Serverのクラウド一元管理が拡大</h2>
+      <h2 class="article-title">Microsoft IntuneによるWindows Server管理の統合：クライアントPCとサーバーのハイブリッド管理構想</h2>
 
       <div class="block">
         <div class="block-title">📖 これまでのあらすじ・前提</div>
-        <p>企業のクラウドシフトが進む中、ワークステーション用途などを含む一部のWindows Serverについても、既存のクライアントPCと同様にクラウドから効率的に管理したいという現場のニーズが高まっています。しかし、オンプレミス環境とクラウド環境の混在により、管理手法がサイロ化しやすいという課題がありました。こうした背景から、MicrosoftはIntuneを用いたサーバー管理の適用範囲を順次拡大しています。</p>
+        <p>従来、Windows Serverの運用管理はオンプレミスのActive Directoryグループポリシー（GPO）やSystem Center Configuration Manager（SCCM/MECM）、あるいはクラウド側ではAzure Arcが担ってきました。一方でクライアントPCはMicrosoft IntuneによるクラウドネイティブなMDM管理への移行が急速に進んでいます。しかし、エッジ環境や小規模拠点、ワークステーション用途で動くWindows Serverは管理基盤の分断を生み、運用負荷を高める一因となっていました。</p>
       </div>
 
       <div class="block">
         <div class="block-title">🔍 何が起きたか・構造の解説</div>
-        <p>今回のアップデートにより、管理者はMicrosoft Intuneを使用して、通常のPCだけでなくWindows Serverも並行してクラウド側から一元的に管理できるようになります。これにより、ポリシーの適用やセキュリティベースラインの統一、更新プログラムの管理などを単一のコンソールで完結させることが可能です。組織ごとのクラウド移行パスの違いに柔軟に対応しつつ、インフラ管理全体の運用負荷を大幅に軽減する構造となっています。</p>
+        <p>Microsoftは今回、クライアントPCと同様にWindows ServerをMicrosoft Intuneの管理対象へと包含する新たなアプローチを発表しました。これにより管理者は、単一のIntune管理コンソールからクライアントPCとサーバーの双方に対してセキュリティベースラインの適用やインベントリ追跡、コンプライアンス評価を実行できるようになります。オンプレミスとクラウドの境界を意識せず、同一のMDMポリシー体系をサーバーOSへ拡張することで、管理ツールのサイロ化を解消する狙いがあります。</p>
       </div>
 
       <div class="block">
@@ -346,17 +391,17 @@
           
           <div class="flow-step">
             <span class="flow-num">STEP 1</span>
-            Windows Serverのワークロードのクラウド統合が進む
+            エッジやワークステーション用途のWindows ServerがPCと別系統で管理され、ガバナンスの隙間や二重管理が発生していた。
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 2</span>
-            IntuneによるPCとサーバーの混在一元管理が可能になる
+            MicrosoftがIntuneによるWindows Serverの直接的な統合管理パスを展開し、MDMポリシーとインベントリを単一コンソールに集約した。
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 3</span>
-            管理者の運用コスト削減とセキュリティポスチャの統一が実現する
+            オンプレミスの運用基盤依存を減らし、クライアントとサーバーの管理体系を一元化することでIT管理コストの大幅削減が可能になる。
           </div>
           
         </div>
@@ -367,55 +412,76 @@
         
         <button class="chip" onclick="toggleGlossary(this, 'g-1-1')">📘 Microsoft Intune</button>
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-1-2')">📘 ワークロード</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-2')">📘 GPO（グループポリシーオブジェクト）</button>
+        
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-3')">📘 Azure Arc</button>
         
       </div>
       
       <div id="g-1-1" class="glossary-box">
-        <strong>Microsoft Intune：</strong>クラウドベースのエンドポイント管理サービス。PCやモバイルデバイスに加え、サーバーの管理にも適用範囲が広がっている。
+        <strong>Microsoft Intune：</strong>クラウドベースのエンドポイント管理サービス。PCやモバイル端末の構成設定やセキュリティ準拠を一括管理する。
       </div>
       
       <div id="g-1-2" class="glossary-box">
-        <strong>ワークロード：</strong>システムやサーバー上で実行される処理やタスク、アプリケーションの負荷全般を指す言葉。
+        <strong>GPO（グループポリシーオブジェクト）：</strong>Active Directory環境でドメイン内のWindowsマシンやユーザーの設定を一元制御するオンプレミスの仕組み。
+      </div>
+      
+      <div id="g-1-3" class="glossary-box">
+        <strong>Azure Arc：</strong>オンプレミスや他社クラウドにあるサーバーをAzureリソースとして一括管理・ガバナンスするためのハイブリッド管理基盤。
       </div>
       
       
 
       <div class="contrarian">
         <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
-        <p>すべてのサーバーを直ちにクラウド管理へ移行するのは、ネットワーク帯域や既存のスクリプト依存などのリスクがあるため早計です。まずはワークステーション用途などの限定的なサーバーから段階的に検証を行う実務上のアプローチが求められます。</p>
+        <p>サーバー管理のIntune統合は小規模環境やワークステーション的運用には有効ですが、複雑なActive Directory依存のエンタープライズサーバーには従来のAzure ArcやGPOが依然として不可欠です。また、すべてのサーバー役割（Role）や機能に対してIntuneポリシーが安全に適用できるわけではないため、適用範囲の選定と検証設計を怠るとサーバー停止事故に繋がるリスクがあります。</p>
       </div>
+
+      <textarea hidden id="ai-prompt-dd-1">以下のニュースについて深掘りして壁打ちしたいです。
+
+【タイトル】Microsoft IntuneによるWindows Server管理の統合：クライアントPCとサーバーのハイブリッド管理構想
+【カテゴリ】Microsoft 基盤・セキュリティ
+【前提・あらすじ】従来、Windows Serverの運用管理はオンプレミスのActive Directoryグループポリシー（GPO）やSystem Center Configuration Manager（SCCM/MECM）、あるいはクラウド側ではAzure Arcが担ってきました。一方でクライアントPCはMicrosoft IntuneによるクラウドネイティブなMDM管理への移行が急速に進んでいます。しかし、エッジ環境や小規模拠点、ワークステーション用途で動くWindows Serverは管理基盤の分断を生み、運用負荷を高める一因となっていました。
+【構造・要点】Microsoftは今回、クライアントPCと同様にWindows ServerをMicrosoft Intuneの管理対象へと包含する新たなアプローチを発表しました。これにより管理者は、単一のIntune管理コンソールからクライアントPCとサーバーの双方に対してセキュリティベースラインの適用やインベントリ追跡、コンプライアンス評価を実行できるようになります。オンプレミスとクラウドの境界を意識せず、同一のMDMポリシー体系をサーバーOSへ拡張することで、管理ツールのサイロ化を解消する狙いがあります。
+【注意点・逆張り視点】サーバー管理のIntune統合は小規模環境やワークステーション的運用には有効ですが、複雑なActive Directory依存のエンタープライズサーバーには従来のAzure ArcやGPOが依然として不可欠です。また、すべてのサーバー役割（Role）や機能に対してIntuneポリシーが安全に適用できるわけではないため、適用範囲の選定と検証設計を怠るとサーバー停止事故に繋がるリスクがあります。
+【元記事URL】https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643
+
+上記を踏まえて、以下の観点でさらに踏み込んで解説してください。
+1. エンタープライズ環境（Microsoft 365 / Azure / Intune / Entra ID等）の実務・設計への具体的な影響
+2. 顧客提案や導入プロジェクトで押さえておくべき落とし穴・前提条件
+3. 次に私が深掘り・確認すべき論点（3つ）</textarea>
 
       <div class="card-footer">
         <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" target="_blank" rel="noopener">元記事を読む ↗</a>
-        <button class="memo-btn" data-title="Microsoft IntuneによるWindows Serverのクラウド一元管理が拡大" data-url="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" onclick="toggleMemo(this)">🔖 メモに追加</button>
+        <div class="footer-actions">
+          <button class="ai-btn" onclick="openDeepDive('ai-prompt-dd-1')">🤖 AIで深掘り</button>
+          <button class="memo-btn" data-title="Microsoft IntuneによるWindows Server管理の統合：クライアントPCとサーバーのハイブリッド管理構想" data-url="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" onclick="toggleMemo(this)">🔖 メモに追加</button>
+        </div>
       </div>
     </article>
     
     
     <article class="card">
       <div class="card-meta">
-        <span class="badge badge-ms">Microsoft AI・クラウド・モダンワーク系</span>
+        <span class="badge badge-ms">Microsoft AI・クラウド</span>
         
-        <span class="tag">#Copilot</span>
-        
-        <span class="tag">#Ignite</span>
+        <span class="tag">#Microsoft Copilot</span>
         
         <span class="tag">#Work IQ</span>
         
-        <span class="tag">#生成AI</span>
+        <span class="tag">#コンテキスト最適化</span>
         
       </div>
-      <h2 class="article-title">Microsoft Ignite 2026で刷新されたCopilot知能レイヤー「Work IQ」の全貌</h2>
+      <h2 class="article-title">Copilot知能レイヤー「Work IQ」の刷新：AI提案を机上の空論に終わらせないコストと文脈の最適化</h2>
 
       <div class="block">
         <div class="block-title">📖 これまでのあらすじ・前提</div>
-        <p>企業への生成AI導入が本格化するにつれ、単なるチャットボットとしての利用を超えて、社内の業務データやコンテキストを深く理解した高度な自律動作が求められるようになっています。Microsoft Ignite 2026では、こうしたニーズに応えるため、Copilotの核心となる知能レイヤー「Work IQ」の大幅な刷新が発表されました。実務におけるコスト効率と文脈理解の精度向上が最大の焦点となっています。</p>
+        <p>企業へのMicrosoft 365 Copilot導入が進む一方で、多くの現場から「社内業務の実態に即した回答が返ってこない」「API利用やライセンス追加に対する投資対効果（ROI）が見えにくい」という課題が指摘されてきました。LLM単体に汎用的な質問を投げる段階は過ぎ、業務特有のコンテキストをいかに高精度にAIへ渡すかが問われています。Microsoft Igniteで示された知能レイヤーの進化は、この業務文脈の把握力向上に焦点を当てています。</p>
       </div>
 
       <div class="block">
         <div class="block-title">🔍 何が起きたか・構造の解説</div>
-        <p>今回の刷新において核となるのは「コスト」と「コンテキスト」の最適化です。Work IQは、組織内の膨大なメール、チャット、ドキュメントなどの散在したコンテキストをより効率的に結びつけ、ユーザーの意図を正確に汲み取る能力を高めています。これにより、エージェント機能や複雑な業務プロセスの自動化において、無駄な処理コストを抑えつつ精度の高い出力結果を得ることが可能になるアーキテクチャへと進化しています。</p>
+        <p>今回明らかになった「Work IQ」のアーキテクチャ刷新では、Microsoft Graph上のメール、チャット、ファイル履歴などの膨大なコンテキストを、より動的かつ低コストにLLMへ注入する仕組みが強化されました。単なる全文検索的なグラウンディングから脱却し、ユーザーの職務ロールや直近の協業関係を考慮した推論コンテキストを効率的に生成します。さらに推論処理を小型モデルと大型モデルへ適切に振り分けることで、トークン消費コストを抑えつつ回答精度を最大化する設計となっています。</p>
       </div>
 
       <div class="block">
@@ -424,17 +490,17 @@
           
           <div class="flow-step">
             <span class="flow-num">STEP 1</span>
-            企業における生成AIの利用が全社的な業務プロセスへ浸透する
+            汎用生成AIの企業導入において、コンテキスト不足によるハルシネーションと過剰な運用コストが課題化していた。
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 2</span>
-            Copilotの知能レイヤー「Work IQ」が刷新されコンテキスト理解が向上する
+            Work IQがGraphデータを基にした動的コンテキスト注入とモデル階層化を進め、業務適合度とコスト効率を両立させた。
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 3</span>
-            コストを抑制しながら実務に直結する高度な自動化と提案が可能になる
+            顧客向け提案において、単なるライセンス販売から『社内Graphデータの整備とROIに基づくCopilot最適化設計』へのシフトが必須となる。
           </div>
           
         </div>
@@ -445,28 +511,51 @@
         
         <button class="chip" onclick="toggleGlossary(this, 'g-2-1')">📘 Work IQ</button>
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-2-2')">📘 コンテキスト</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-2')">📘 Microsoft Graph</button>
+        
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-3')">📘 グラウンディング</button>
         
       </div>
       
       <div id="g-2-1" class="glossary-box">
-        <strong>Work IQ：</strong>Microsoft 365 Copilotの背後で組織内の文脈やデータを理解・処理する中核的な知能レイヤー。
+        <strong>Work IQ：</strong>Microsoft 365環境におけるユーザーの業務関係性や文脈データをCopilotの推論に橋渡しする知能基盤レイヤー。
       </div>
       
       <div id="g-2-2" class="glossary-box">
-        <strong>コンテキスト：</strong>文脈や背景情報のこと。AIがユーザーの意図を正確に理解するために必要な過去のやり取りや関連ファイルなどの情報。
+        <strong>Microsoft Graph：</strong>Microsoft 365内のユーザー、メール、予定表、ファイルなどのデータを相互に結びつける巨大なAPIゲートウェイ。
+      </div>
+      
+      <div id="g-2-3" class="glossary-box">
+        <strong>グラウンディング：</strong>生成AIが回答を出力する際、社内文書などの実データを根拠として参照させ、嘘の出力を防止する技術。
       </div>
       
       
 
       <div class="contrarian">
         <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
-        <p>知能レイヤーが高度化する一方で、社内データのアクセス権限（パーミッション）が適切に管理されていない環境では、意図しない情報漏洩リスクや過剰なプロンプトによるコスト急増を招くおそれがあります。導入前に入念なガバナンス設計が必要です。</p>
+        <p>Work IQの恩恵を最大限に受けるには、SharePoint等の社内アクセス権（ACL）が厳格に管理されていることが前提となります。アクセス権が放置された環境に高度なコンテキスト抽出を導入すると、非公開データがAI経由で意図せず露出する重大な内部情報漏洩リスクを招く点に細心の注意が必要です。</p>
       </div>
+
+      <textarea hidden id="ai-prompt-dd-2">以下のニュースについて深掘りして壁打ちしたいです。
+
+【タイトル】Copilot知能レイヤー「Work IQ」の刷新：AI提案を机上の空論に終わらせないコストと文脈の最適化
+【カテゴリ】Microsoft AI・クラウド
+【前提・あらすじ】企業へのMicrosoft 365 Copilot導入が進む一方で、多くの現場から「社内業務の実態に即した回答が返ってこない」「API利用やライセンス追加に対する投資対効果（ROI）が見えにくい」という課題が指摘されてきました。LLM単体に汎用的な質問を投げる段階は過ぎ、業務特有のコンテキストをいかに高精度にAIへ渡すかが問われています。Microsoft Igniteで示された知能レイヤーの進化は、この業務文脈の把握力向上に焦点を当てています。
+【構造・要点】今回明らかになった「Work IQ」のアーキテクチャ刷新では、Microsoft Graph上のメール、チャット、ファイル履歴などの膨大なコンテキストを、より動的かつ低コストにLLMへ注入する仕組みが強化されました。単なる全文検索的なグラウンディングから脱却し、ユーザーの職務ロールや直近の協業関係を考慮した推論コンテキストを効率的に生成します。さらに推論処理を小型モデルと大型モデルへ適切に振り分けることで、トークン消費コストを抑えつつ回答精度を最大化する設計となっています。
+【注意点・逆張り視点】Work IQの恩恵を最大限に受けるには、SharePoint等の社内アクセス権（ACL）が厳格に管理されていることが前提となります。アクセス権が放置された環境に高度なコンテキスト抽出を導入すると、非公開データがAI経由で意図せず露出する重大な内部情報漏洩リスクを招く点に細心の注意が必要です。
+【元記事URL】https://news.google.com/rss/articles/CBMiQkFVX3lxTE9mZnUwVXBKZy05OW9faHRLUnRuNFNfaDVINUczVkE1TXJTWjdhaXJJaTFqbmRqRHA4ZFlNY1R3eHVnUQ?oc=5
+
+上記を踏まえて、以下の観点でさらに踏み込んで解説してください。
+1. エンタープライズ環境（Microsoft 365 / Azure / Intune / Entra ID等）の実務・設計への具体的な影響
+2. 顧客提案や導入プロジェクトで押さえておくべき落とし穴・前提条件
+3. 次に私が深掘り・確認すべき論点（3つ）</textarea>
 
       <div class="card-footer">
         <a href="https://news.google.com/rss/articles/CBMiQkFVX3lxTE9mZnUwVXBKZy05OW9faHRLUnRuNFNfaDVINUczVkE1TXJTWjdhaXJJaTFqbmRqRHA4ZFlNY1R3eHVnUQ?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
-        <button class="memo-btn" data-title="Microsoft Ignite 2026で刷新されたCopilot知能レイヤー「Work IQ」の全貌" data-url="https://news.google.com/rss/articles/CBMiQkFVX3lxTE9mZnUwVXBKZy05OW9faHRLUnRuNFNfaDVINUczVkE1TXJTWjdhaXJJaTFqbmRqRHA4ZFlNY1R3eHVnUQ?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
+        <div class="footer-actions">
+          <button class="ai-btn" onclick="openDeepDive('ai-prompt-dd-2')">🤖 AIで深掘り</button>
+          <button class="memo-btn" data-title="Copilot知能レイヤー「Work IQ」の刷新：AI提案を机上の空論に終わらせないコストと文脈の最適化" data-url="https://news.google.com/rss/articles/CBMiQkFVX3lxTE9mZnUwVXBKZy05OW9faHRLUnRuNFNfaDVINUczVkE1TXJTWjdhaXJJaTFqbmRqRHA4ZFlNY1R3eHVnUQ?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
+        </div>
       </div>
     </article>
     
@@ -478,30 +567,58 @@
       <article class="radar-card">
         <div>
           <div class="card-meta">
-            <span class="badge badge-ms">MS小ネタ</span>
+            <span class="badge badge-ms">MS基盤・仕様変更</span>
           </div>
-          <h3 class="radar-title">「Microsoft To Do」が2027年6月30日にアプリ提供終了へ</h3>
-          <p class="radar-body">マイクロソフトの人気タスク管理アプリ「Microsoft To Do」が、2027年6月30日をもってサービスを終了すると発表されました。法人向けユーザーは「Microsoft Planner」への移行が推奨されており、個人向けについては現時点で明確な代替プラットフォームの提供はありません。</p>
-          <div class="radar-why"><strong>なぜ今話題？：</strong>長年親しまれてきた定番タスク管理ツールの終了と移行パスが突如発表され、今後の代替ツールの選定に影響を与えるため。</div>
+          <h3 class="radar-title">Microsoft To Doが2027年6月に終了へ：法人向けはPlannerへの統合を推進</h3>
+          <p class="radar-body">Microsoftはタスク管理アプリ「Microsoft To Do」の提供を2027年6月30日で終了すると発表しました。法人ユーザーは統合が進む「Microsoft Planner」への移行が案内される一方、個人向けの後継策は明示されていません。社内タスク管理をTo Do依存でワークフロー化している企業は、Plannerへの早期再設計が必要です。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>長年親しまれた独立タスクアプリが終了を迎え、M365内のタスク管理がPlanner基盤へ完全一本化されるロードマップが確定したため。</div>
         </div>
+
+        <textarea hidden id="ai-prompt-qr-1">以下のトピックについて、もう少し詳しく教えてください。
+
+【タイトル】Microsoft To Doが2027年6月に終了へ：法人向けはPlannerへの統合を推進
+【カテゴリ】MS基盤・仕様変更
+【概要】Microsoftはタスク管理アプリ「Microsoft To Do」の提供を2027年6月30日で終了すると発表しました。法人ユーザーは統合が進む「Microsoft Planner」への移行が案内される一方、個人向けの後継策は明示されていません。社内タスク管理をTo Do依存でワークフロー化している企業は、Plannerへの早期再設計が必要です。
+【なぜ今話題か】長年親しまれた独立タスクアプリが終了を迎え、M365内のタスク管理がPlanner基盤へ完全一本化されるロードマップが確定したため。
+【元記事URL】https://news.google.com/rss/articles/CBMid0FVX3lxTFA4VzFiMm41RFNRalFuQndnSi1CUWRPQjNVOXhBVW1xVHBkeTVOSEdJWXJnNllCelgtbjVLWFRfbE91MnY1ZzdnMjNzSmNTM0JXeEN2TUtESTdWRWhCSjF2blVia1ltZjF0QzlrTmZOd08tcnpXVkhr0gF8QVVfeXFMTy1zdHRSVnJDTXJfQV81cm1FNVE3Y1IxYU9CSW9HQ3p1emdkR0t3Y1dtNkhERlprZHE5VGlKNG5YQXlRUUR1M2JzYjdjWF8xdWs2QkxqZHFvSkhIc2k2NlZiVkZ4N0NCVmFnQ2dqZkZKWXVDOVJQTzVKckdyag?oc=5
+
+前提知識がなくてもわかるように背景を整理したうえで、今後注目すべきポイントを3点挙げてください。</textarea>
+
         <div class="card-footer">
-          <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxNcFJwZktNakRzNDBTS3c4OVU2dVhfQ1VFaGNURGh0RHFnOThKdXFKVnFaVXVoeTNIZ0ZKRldQMkdXYjk4U05rMDBSS1NaRWZ1MUdGWXkxVVpHOUtoU2tncmlpS3dQWWl3ZzduLXBBa29YTEdUeTQ1RUlaZ2l3N0pMd2lrUjN5d28?oc=5" target="_blank" rel="noopener">元記事 ↗</a>
-          <button class="memo-btn" data-title="「Microsoft To Do」が2027年6月30日にアプリ提供終了へ" data-url="https://news.google.com/rss/articles/CBMihwFBVV95cUxNcFJwZktNakRzNDBTS3c4OVU2dVhfQ1VFaGNURGh0RHFnOThKdXFKVnFaVXVoeTNIZ0ZKRldQMkdXYjk4U05rMDBSS1NaRWZ1MUdGWXkxVVpHOUtoU2tncmlpS3dQWWl3ZzduLXBBa29YTEdUeTQ1RUlaZ2l3N0pMd2lrUjN5d28?oc=5" onclick="toggleMemo(this)">🔖 メモ</button>
+          <a href="https://news.google.com/rss/articles/CBMid0FVX3lxTFA4VzFiMm41RFNRalFuQndnSi1CUWRPQjNVOXhBVW1xVHBkeTVOSEdJWXJnNllCelgtbjVLWFRfbE91MnY1ZzdnMjNzSmNTM0JXeEN2TUtESTdWRWhCSjF2blVia1ltZjF0QzlrTmZOd08tcnpXVkhr0gF8QVVfeXFMTy1zdHRSVnJDTXJfQV81cm1FNVE3Y1IxYU9CSW9HQ3p1emdkR0t3Y1dtNkhERlprZHE5VGlKNG5YQXlRUUR1M2JzYjdjWF8xdWs2QkxqZHFvSkhIc2k2NlZiVkZ4N0NCVmFnQ2dqZkZKWXVDOVJQTzVKckdyag?oc=5" target="_blank" rel="noopener">元記事 ↗</a>
+          <div class="footer-actions">
+            <button class="ai-btn" onclick="openDeepDive('ai-prompt-qr-1')">🤖 深掘り</button>
+            <button class="memo-btn" data-title="Microsoft To Doが2027年6月に終了へ：法人向けはPlannerへの統合を推進" data-url="https://news.google.com/rss/articles/CBMid0FVX3lxTFA4VzFiMm41RFNRalFuQndnSi1CUWRPQjNVOXhBVW1xVHBkeTVOSEdJWXJnNllCelgtbjVLWFRfbE91MnY1ZzdnMjNzSmNTM0JXeEN2TUtESTdWRWhCSjF2blVia1ltZjF0QzlrTmZOd08tcnpXVkhr0gF8QVVfeXFMTy1zdHRSVnJDTXJfQV81cm1FNVE3Y1IxYU9CSW9HQ3p1emdkR0t3Y1dtNkhERlprZHE5VGlKNG5YQXlRUUR1M2JzYjdjWF8xdWs2QkxqZHFvSkhIc2k2NlZiVkZ4N0NCVmFnQ2dqZkZKWXVDOVJQTzVKckdyag?oc=5" onclick="toggleMemo(this)">🔖 メモ</button>
+          </div>
         </div>
       </article>
       
       <article class="radar-card">
         <div>
           <div class="card-meta">
-            <span class="badge badge-ms">MS小ネタ</span>
+            <span class="badge badge-ms">MS基盤・セキュリティ</span>
           </div>
-          <h3 class="radar-title">Microsoft Entra Connect Healthの脆弱性によるメタデータ漏えい</h3>
-          <p class="radar-body">マイクロソフトは、オンプレミスとクラウドを接続する「Entra Connect Health」において、テナントのメタデータが外部に漏えいする脆弱性が存在したことを公表しました。管理者側での速やかな状況確認と対策が求められるセキュリティインシデントです。</p>
-          <div class="radar-why"><strong>なぜ今話題？：</strong>ID基盤の根幹に関わる脆弱性であり、テナントのセキュリティ設定や監査ログの確認を早急に行う必要があるため。</div>
+          <h3 class="radar-title">Exchange OnlineでDirect Sendの拒否機能が一般提供（GA）：不正リレー防止を強化</h3>
+          <p class="radar-body">Exchange Onlineにおいて、認証なしで社内宛てメールを直接送信する「Direct Send」をテナント単位で拒否する設定が一般提供されました。複合機やオンプレミス機器からの送信経路として多用されてきた一方、内部詐称メールの温床となっていた経路です。管理者は送信ドメイン認証の徹底と合わせて、不正な直接送信を確実に遮断できるようになります。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>設定不備を突いた社内なりすまし攻撃の深刻化を受け、Direct Send経由の受信を明示的に拒絶するセキュリティ制御が本番環境で利用可能になったため。</div>
         </div>
+
+        <textarea hidden id="ai-prompt-qr-2">以下のトピックについて、もう少し詳しく教えてください。
+
+【タイトル】Exchange OnlineでDirect Sendの拒否機能が一般提供（GA）：不正リレー防止を強化
+【カテゴリ】MS基盤・セキュリティ
+【概要】Exchange Onlineにおいて、認証なしで社内宛てメールを直接送信する「Direct Send」をテナント単位で拒否する設定が一般提供されました。複合機やオンプレミス機器からの送信経路として多用されてきた一方、内部詐称メールの温床となっていた経路です。管理者は送信ドメイン認証の徹底と合わせて、不正な直接送信を確実に遮断できるようになります。
+【なぜ今話題か】設定不備を突いた社内なりすまし攻撃の深刻化を受け、Direct Send経由の受信を明示的に拒絶するセキュリティ制御が本番環境で利用可能になったため。
+【元記事URL】https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787
+
+前提知識がなくてもわかるように背景を整理したうえで、今後注目すべきポイントを3点挙げてください。</textarea>
+
         <div class="card-footer">
-          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPNnJHQ0RYM2RucEwyLWwwSmR4NEZOelhiOG9mVUNhVTN2dVFZMVdyQk9UdkRIOHZyNzlYOVEyRDJNaHVkZUZmbWhsRmNZd2VuMF9mQlUzNmlndkoyaUhoSDRmMjdoUVFIaHV6NGVhWDNjcHc0SngtWGlSOVJLZmFib1NlUTlnN0RITTExT3hEUktPZ20ta2FuUlRoWm5zRzA?oc=5" target="_blank" rel="noopener">元記事 ↗</a>
-          <button class="memo-btn" data-title="Microsoft Entra Connect Healthの脆弱性によるメタデータ漏えい" data-url="https://news.google.com/rss/articles/CBMinwFBVV95cUxPNnJHQ0RYM2RucEwyLWwwSmR4NEZOelhiOG9mVUNhVTN2dVFZMVdyQk9UdkRIOHZyNzlYOVEyRDJNaHVkZUZmbWhsRmNZd2VuMF9mQlUzNmlndkoyaUhoSDRmMjdoUVFIaHV6NGVhWDNjcHc0SngtWGlSOVJLZmFib1NlUTlnN0RITTExT3hEUktPZ20ta2FuUlRoWm5zRzA?oc=5" onclick="toggleMemo(this)">🔖 メモ</button>
+          <a href="https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787" target="_blank" rel="noopener">元記事 ↗</a>
+          <div class="footer-actions">
+            <button class="ai-btn" onclick="openDeepDive('ai-prompt-qr-2')">🤖 深掘り</button>
+            <button class="memo-btn" data-title="Exchange OnlineでDirect Sendの拒否機能が一般提供（GA）：不正リレー防止を強化" data-url="https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787" onclick="toggleMemo(this)">🔖 メモ</button>
+          </div>
         </div>
       </article>
       
@@ -510,8 +627,8 @@
 
     <div class="section-label">Cross Analysis — 編集長コラム</div>
     <section class="column-card">
-      <h2 class="article-title">管理のクラウド化とAI知能の高度化がもたらす、次世代IT運用の形</h2>
-      <p style="margin:0;">今回のニュースでは、IntuneによるWindows Serverのクラウド管理や、Ignite 2026で発表されたCopilotの「Work IQ」刷新など、インフラ管理とAI活用がいずれも「より深いレイヤーでの統合と自動化」に向かっていることが浮き彫りになりました。単なる個別のツール管理から、組織全体のコンテキストを安全かつ一元的にコントロールするアプローチへとシフトしています。管理者は、こうしたエコシステムの進化をキャッチアップし、セキュリティのガバナンスと利便性のバランスを取った設計を今から見据えておく必要があります。</p>
+      <h2 class="article-title">「境界の集約」がもたらす管理基盤とセキュリティの再設計</h2>
+      <p style="margin:0;">本日の動向を俯瞰すると、Microsoftは管理ツールの境界とデータの境界の両面で大胆な集約を進めていることがわかります。Windows ServerのIntune統合やTo DoのPlanner統合に見られるように、分散していた管理プレーンとアプリ体験をクラウド中央へ統合する動きが加速しています。同時に、Work IQのような高度なAI活用やExchangeのDirect Send拒否が示す通り、集約された環境下では『アクセス権設計の徹底』と『不正な抜け道の遮断』が前提条件となります。ITインフラ管理者にとって、個別の機能アップデートを単体で追うのではなく、統合基盤上でいかにゼロトラストな境界制御を再構築できるかが実務の最重要テーマとなっています。</p>
     </section>
   </main>
 
@@ -520,22 +637,52 @@
     <button onclick="copyMemos()">Discord用にコピー</button>
   </div>
 
+  <div class="toast" id="toast"></div>
+
   <script>
     const savedMemos = new Map();
+    let toastTimer = null;
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 3500);
+    }
+
     function toggleTheme() {
       const root = document.documentElement;
       root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
     }
+
     function toggleSize() {
       const root = document.documentElement;
       root.dataset.size = root.dataset.size === "normal" ? "large" : "normal";
     }
+
     function toggleGlossary(btn, id) {
       const box = document.getElementById(id);
       const isOpen = box.style.display === "block";
       box.style.display = isOpen ? "none" : "block";
       btn.classList.toggle("open", !isOpen);
     }
+
+    function openDeepDive(promptId) {
+      const el = document.getElementById(promptId);
+      if (!el) return;
+      const text = el.value.trim();
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast("深掘りプロンプトをコピーしました！開いた Gemini に貼り付けてください");
+        }).catch(() => {
+          showToast("コピーに失敗しました。ブラウザの権限を確認してください");
+        });
+      }
+      window.open("https://gemini.google.com/app", "_blank", "noopener");
+    }
+
     function toggleMemo(btn) {
       const title = btn.dataset.title;
       const url = btn.dataset.url;
@@ -552,13 +699,14 @@
       document.getElementById("memoCount").textContent = `${savedMemos.size}件選択中`;
       bar.style.display = savedMemos.size > 0 ? "flex" : "none";
     }
+
     function copyMemos() {
       const lines = ["**📌 気になったトピック (2026/11/23 (Mon))**"];
       for (const [title, url] of savedMemos.entries()) {
         lines.push(`- ${title}\n  ${url}`);
       }
       navigator.clipboard.writeText(lines.join("\n")).then(() => {
-        alert("Discord の #interest-log に貼れる形式でコピーしました！");
+        showToast("Discord の #interest-log に貼れる形式でコピーしました！");
       });
     }
   </script>
