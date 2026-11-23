@@ -111,8 +111,7 @@ def generate_edition(client: genai.Client, mode: str, interests: str, raw_news: 
 
     candidate_models = list(dict.fromkeys([
         MODEL_NAME,
-        "gemini-3.8-flash-lite",
-        "gemini-2.5-flash-lite",
+        "gemini-3.5-flash-lite",
     ]))
 
     last_error = None
@@ -137,7 +136,7 @@ def generate_edition(client: genai.Client, mode: str, interests: str, raw_news: 
                     print(f"{model_name} は利用不可のためスキップします")
                     break
                 if ("503" in msg or "UNAVAILABLE" in msg or "429" in msg) and attempt < 3:
-                    wait = 30 * attempt
+                    wait = 15 * attempt
                     print(f"{model_name} 混雑のため {wait} 秒後にリトライします...")
                     time.sleep(wait)
                 else:
