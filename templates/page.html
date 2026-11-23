@@ -228,6 +228,30 @@
       border-top: 1px solid var(--border);
       font-size: 0.84rem;
     }
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .ai-btn {
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      color: var(--accent-ai);
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .ai-btn:hover {
+      background: rgba(56, 189, 248, 0.24);
+    }
+    [data-theme="light"] .ai-btn {
+      background: rgba(2, 132, 199, 0.1);
+      color: #0284C7;
+      border-color: rgba(2, 132, 199, 0.4);
+    }
     .memo-btn {
       background: transparent;
       border: 1px solid var(--border);
@@ -295,6 +319,27 @@
       font-weight: 700;
       cursor: pointer;
     }
+
+    .toast {
+      position: fixed;
+      top: 76px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0F172A;
+      color: #F8FAFC;
+      border: 1px solid var(--accent-ai);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.84rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      z-index: 60;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .toast.show { opacity: 1; }
   </style>
 </head>
 <body>
@@ -366,9 +411,29 @@
         <p>{{ item.contrarian }}</p>
       </div>
 
+      <textarea hidden id="ai-prompt-dd-{{ article_idx }}">以下のニュースについて深掘りして壁打ちしたいです。
+
+【タイトル】{{ item.title | e }}
+【カテゴリ】{{ item.category_label | e }}
+【前提・あらすじ】{{ item.background | e }}
+【構造・要点】{{ item.structure | e }}
+【注意点・逆張り視点】{{ item.contrarian | e }}
+【元記事URL】{{ item.source_url | e }}
+
+{% if mode == 'work' %}上記を踏まえて、以下の観点でさらに踏み込んで解説してください。
+1. エンタープライズ環境（Microsoft 365 / Azure / Intune / Entra ID等）の実務・設計への具体的な影響
+2. 顧客提案や導入プロジェクトで押さえておくべき落とし穴・前提条件
+3. 次に私が深掘り・確認すべき論点（3つ）{% else %}上記を踏まえて、以下の観点でさらに踏み込んで解説してください。
+1. 表面的なニュースの裏にある構造・力学（誰が得をして誰が困るか）
+2. 今後1〜3年の中長期的な波及先（関連業界・投資・技術トレンドなど）
+3. 次に私が深掘り・確認すべき論点（3つ）{% endif %}</textarea>
+
       <div class="card-footer">
         <a href="{{ item.source_url }}" target="_blank" rel="noopener">元記事を読む ↗</a>
-        <button class="memo-btn" data-title="{{ item.title }}" data-url="{{ item.source_url }}" onclick="toggleMemo(this)">🔖 メモに追加</button>
+        <div class="footer-actions">
+          <button class="ai-btn" onclick="openDeepDive('ai-prompt-dd-{{ article_idx }}')">🤖 AIで深掘り</button>
+          <button class="memo-btn" data-title="{{ item.title }}" data-url="{{ item.source_url }}" onclick="toggleMemo(this)">🔖 メモに追加</button>
+        </div>
       </div>
     </article>
     {% endfor %}
@@ -386,9 +451,23 @@
           <p class="radar-body">{{ r.summary }}</p>
           <div class="radar-why"><strong>なぜ今話題？：</strong>{{ r.why_now }}</div>
         </div>
+
+        <textarea hidden id="ai-prompt-qr-{{ loop.index }}">以下のトピックについて、もう少し詳しく教えてください。
+
+【タイトル】{{ r.title | e }}
+【カテゴリ】{{ r.category_label | e }}
+【概要】{{ r.summary | e }}
+【なぜ今話題か】{{ r.why_now | e }}
+【元記事URL】{{ r.source_url | e }}
+
+前提知識がなくてもわかるように背景を整理したうえで、今後注目すべきポイントを3点挙げてください。</textarea>
+
         <div class="card-footer">
           <a href="{{ r.source_url }}" target="_blank" rel="noopener">元記事 ↗</a>
-          <button class="memo-btn" data-title="{{ r.title }}" data-url="{{ r.source_url }}" onclick="toggleMemo(this)">🔖 メモ</button>
+          <div class="footer-actions">
+            <button class="ai-btn" onclick="openDeepDive('ai-prompt-qr-{{ loop.index }}')">🤖 深掘り</button>
+            <button class="memo-btn" data-title="{{ r.title }}" data-url="{{ r.source_url }}" onclick="toggleMemo(this)">🔖 メモ</button>
+          </div>
         </div>
       </article>
       {% endfor %}
@@ -407,22 +486,52 @@
     <button onclick="copyMemos()">Discord用にコピー</button>
   </div>
 
+  <div class="toast" id="toast"></div>
+
   <script>
     const savedMemos = new Map();
+    let toastTimer = null;
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 3500);
+    }
+
     function toggleTheme() {
       const root = document.documentElement;
       root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
     }
+
     function toggleSize() {
       const root = document.documentElement;
       root.dataset.size = root.dataset.size === "normal" ? "large" : "normal";
     }
+
     function toggleGlossary(btn, id) {
       const box = document.getElementById(id);
       const isOpen = box.style.display === "block";
       box.style.display = isOpen ? "none" : "block";
       btn.classList.toggle("open", !isOpen);
     }
+
+    function openDeepDive(promptId) {
+      const el = document.getElementById(promptId);
+      if (!el) return;
+      const text = el.value.trim();
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast("深掘りプロンプトをコピーしました！開いた Gemini に貼り付けてください");
+        }).catch(() => {
+          showToast("コピーに失敗しました。ブラウザの権限を確認してください");
+        });
+      }
+      window.open("https://gemini.google.com/app", "_blank", "noopener");
+    }
+
     function toggleMemo(btn) {
       const title = btn.dataset.title;
       const url = btn.dataset.url;
@@ -439,13 +548,14 @@
       document.getElementById("memoCount").textContent = `${savedMemos.size}件選択中`;
       bar.style.display = savedMemos.size > 0 ? "flex" : "none";
     }
+
     function copyMemos() {
       const lines = ["**📌 気になったトピック ({{ date_str }})**"];
       for (const [title, url] of savedMemos.entries()) {
         lines.push(`- ${title}\n  ${url}`);
       }
       navigator.clipboard.writeText(lines.join("\n")).then(() => {
-        alert("Discord の #interest-log に貼れる形式でコピーしました！");
+        showToast("Discord の #interest-log に貼れる形式でコピーしました！");
       });
     }
   </script>
