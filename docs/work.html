@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark" data-size="normal">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MS仕事用 | DAILY SIGNAL</title>
+  <style>
+    :root {
+      --bg: #0B0F19;
+      --card: #131A2A;
+      --nest: #1A2338;
+      --border: #24304A;
+      --text: #E6EDF7;
+      --muted: #94A3B8;
+      --accent-ms: #818CF8;
+      --accent-stock: #34D399;
+      --accent-ai: #38BDF8;
+      --accent-game: #A78BFA;
+      --accent-trend: #FBBF24;
+      --rose-bg: rgba(244, 63, 94, 0.10);
+      --rose-border: rgba(244, 63, 94, 0.45);
+      --rose-text: #FDA4AF;
+    }
+    [data-theme="light"] {
+      --bg: #F4F6FA;
+      --card: #FFFFFF;
+      --nest: #F1F5F9;
+      --border: #CBD5E1;
+      --text: #0F172A;
+      --muted: #475569;
+      --rose-bg: #FFF1F2;
+      --rose-border: #FDA4AF;
+      --rose-text: #9F1239;
+    }
+    [data-size="large"] { font-size: 18px; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding-bottom: 96px;
+    }
+    a { color: var(--accent-ai); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11, 15, 25, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    [data-theme="light"] header { background: rgba(244, 246, 250, 0.92); }
+    .header-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .brand { display: flex; flex-direction: column; }
+    .brand-title { font-weight: 800; letter-spacing: 0.06em; font-size: 1.05rem; }
+    .brand-sub { font-size: 0.78rem; color: var(--muted); }
+
+    .nav-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tab-link {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .tab-link.active {
+      background: var(--accent-ms);
+      color: #0B0F19;
+      border-color: transparent;
+    }
+    .ctrl-btn {
+      background: var(--nest);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    main { max-width: 920px; margin: 24px auto; padding: 0 16px; }
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin: 28px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 0.78rem;
+    }
+    .badge {
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.74rem;
+      color: #0B0F19;
+    }
+    .badge-ms { background: var(--accent-ms); }
+    .badge-stock { background: var(--accent-stock); }
+    .badge-ai { background: var(--accent-ai); }
+    .badge-game { background: var(--accent-game); }
+    .badge-trend { background: var(--accent-trend); }
+    .tag {
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--nest);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    h2.article-title {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      line-height: 1.45;
+    }
+    .block {
+      background: var(--nest);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .block-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+    .block p { margin: 0; font-size: 0.95rem; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .flow-step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+    }
+    .flow-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-ai);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .glossary { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .chip {
+      background: var(--nest);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .chip.open { border-color: var(--accent-ai); color: var(--accent-ai); }
+    .glossary-box {
+      display: none;
+      background: var(--nest);
+      border-left: 3px solid var(--accent-ai);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+    }
+
+    .contrarian {
+      background: var(--rose-bg);
+      border: 1px solid var(--rose-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 12px;
+    }
+    .contrarian .block-title { color: var(--rose-text); }
+
+    .card-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.84rem;
+    }
+    .memo-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+    .memo-btn.saved {
+      background: var(--accent-stock);
+      color: #0B0F19;
+      border-color: transparent;
+      font-weight: 700;
+    }
+
+    .radar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .radar-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .radar-title { margin: 8px 0; font-size: 1.02rem; line-height: 1.45; }
+    .radar-body { font-size: 0.9rem; color: var(--text); margin: 0 0 10px; }
+    .radar-why { font-size: 0.82rem; color: var(--muted); background: var(--nest); padding: 8px 10px; border-radius: 8px; }
+
+    .column-card {
+      background: linear-gradient(135deg, rgba(129, 140, 248, 0.12), rgba(56, 189, 248, 0.08));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .memo-bar {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E293B;
+      color: #F8FAFC;
+      border: 1px solid var(--accent-stock);
+      border-radius: 999px;
+      padding: 10px 18px;
+      display: none;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      z-index: 50;
+      font-size: 0.88rem;
+    }
+    .memo-bar button {
+      background: var(--accent-stock);
+      color: #0B0F19;
+      border: none;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-title">DAILY SIGNAL — MS WORK EDITION</span>
+        <span class="brand-sub">2026/11/23 (Mon) 発行</span>
+      </div>
+      <div class="nav-group">
+        <a class="tab-link active" href="./work.html">💼 MS仕事用</a>
+        <a class="tab-link " href="./life.html">🌐 私生活用</a>
+        <button class="ctrl-btn" onclick="toggleSize()">A / A+</button>
+        <button class="ctrl-btn" onclick="toggleTheme()">🌙 / ☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-label">Deep Dive — 構造から読み解く</div>
+    
+    
+    <article class="card">
+      <div class="card-meta">
+        <span class="badge badge-ms">Microsoft基盤・セキュリティ・管理系</span>
+        
+        <span class="tag">#Intune</span>
+        
+        <span class="tag">#Windows Server</span>
+        
+        <span class="tag">#クラウド移行</span>
+        
+      </div>
+      <h2 class="article-title">Microsoft IntuneによるWindows Serverのクラウド一元管理が拡大</h2>
+
+      <div class="block">
+        <div class="block-title">📖 これまでのあらすじ・前提</div>
+        <p>企業のクラウドシフトが進む中、ワークステーション用途などを含む一部のWindows Serverについても、既存のクライアントPCと同様にクラウドから効率的に管理したいという現場のニーズが高まっています。しかし、オンプレミス環境とクラウド環境の混在により、管理手法がサイロ化しやすいという課題がありました。こうした背景から、MicrosoftはIntuneを用いたサーバー管理の適用範囲を順次拡大しています。</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">🔍 何が起きたか・構造の解説</div>
+        <p>今回のアップデートにより、管理者はMicrosoft Intuneを使用して、通常のPCだけでなくWindows Serverも並行してクラウド側から一元的に管理できるようになります。これにより、ポリシーの適用やセキュリティベースラインの統一、更新プログラムの管理などを単一のコンソールで完結させることが可能です。組織ごとのクラウド移行パスの違いに柔軟に対応しつつ、インフラ管理全体の運用負荷を大幅に軽減する構造となっています。</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⛓️ 因果・影響の連鎖</div>
+        <div class="flow">
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 1</span>
+            Windows Serverのワークロードのクラウド統合が進む
+          </div>
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 2</span>
+            IntuneによるPCとサーバーの混在一元管理が可能になる
+          </div>
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 3</span>
+            管理者の運用コスト削減とセキュリティポスチャの統一が実現する
+          </div>
+          
+        </div>
+      </div>
+
+      
+      <div class="glossary">
+        
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-1')">📘 Microsoft Intune</button>
+        
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-2')">📘 ワークロード</button>
+        
+      </div>
+      
+      <div id="g-1-1" class="glossary-box">
+        <strong>Microsoft Intune：</strong>クラウドベースのエンドポイント管理サービス。PCやモバイルデバイスに加え、サーバーの管理にも適用範囲が広がっている。
+      </div>
+      
+      <div id="g-1-2" class="glossary-box">
+        <strong>ワークロード：</strong>システムやサーバー上で実行される処理やタスク、アプリケーションの負荷全般を指す言葉。
+      </div>
+      
+      
+
+      <div class="contrarian">
+        <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
+        <p>すべてのサーバーを直ちにクラウド管理へ移行するのは、ネットワーク帯域や既存のスクリプト依存などのリスクがあるため早計です。まずはワークステーション用途などの限定的なサーバーから段階的に検証を行う実務上のアプローチが求められます。</p>
+      </div>
+
+      <div class="card-footer">
+        <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <button class="memo-btn" data-title="Microsoft IntuneによるWindows Serverのクラウド一元管理が拡大" data-url="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" onclick="toggleMemo(this)">🔖 メモに追加</button>
+      </div>
+    </article>
+    
+    
+    <article class="card">
+      <div class="card-meta">
+        <span class="badge badge-ms">Microsoft AI・クラウド・モダンワーク系</span>
+        
+        <span class="tag">#Copilot</span>
+        
+        <span class="tag">#Ignite</span>
+        
+        <span class="tag">#Work IQ</span>
+        
+        <span class="tag">#生成AI</span>
+        
+      </div>
+      <h2 class="article-title">Microsoft Ignite 2026で刷新されたCopilot知能レイヤー「Work IQ」の全貌</h2>
+
+      <div class="block">
+        <div class="block-title">📖 これまでのあらすじ・前提</div>
+        <p>企業への生成AI導入が本格化するにつれ、単なるチャットボットとしての利用を超えて、社内の業務データやコンテキストを深く理解した高度な自律動作が求められるようになっています。Microsoft Ignite 2026では、こうしたニーズに応えるため、Copilotの核心となる知能レイヤー「Work IQ」の大幅な刷新が発表されました。実務におけるコスト効率と文脈理解の精度向上が最大の焦点となっています。</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">🔍 何が起きたか・構造の解説</div>
+        <p>今回の刷新において核となるのは「コスト」と「コンテキスト」の最適化です。Work IQは、組織内の膨大なメール、チャット、ドキュメントなどの散在したコンテキストをより効率的に結びつけ、ユーザーの意図を正確に汲み取る能力を高めています。これにより、エージェント機能や複雑な業務プロセスの自動化において、無駄な処理コストを抑えつつ精度の高い出力結果を得ることが可能になるアーキテクチャへと進化しています。</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⛓️ 因果・影響の連鎖</div>
+        <div class="flow">
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 1</span>
+            企業における生成AIの利用が全社的な業務プロセスへ浸透する
+          </div>
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 2</span>
+            Copilotの知能レイヤー「Work IQ」が刷新されコンテキスト理解が向上する
+          </div>
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 3</span>
+            コストを抑制しながら実務に直結する高度な自動化と提案が可能になる
+          </div>
+          
+        </div>
+      </div>
+
+      
+      <div class="glossary">
+        
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-1')">📘 Work IQ</button>
+        
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-2')">📘 コンテキスト</button>
+        
+      </div>
+      
+      <div id="g-2-1" class="glossary-box">
+        <strong>Work IQ：</strong>Microsoft 365 Copilotの背後で組織内の文脈やデータを理解・処理する中核的な知能レイヤー。
+      </div>
+      
+      <div id="g-2-2" class="glossary-box">
+        <strong>コンテキスト：</strong>文脈や背景情報のこと。AIがユーザーの意図を正確に理解するために必要な過去のやり取りや関連ファイルなどの情報。
+      </div>
+      
+      
+
+      <div class="contrarian">
+        <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
+        <p>知能レイヤーが高度化する一方で、社内データのアクセス権限（パーミッション）が適切に管理されていない環境では、意図しない情報漏洩リスクや過剰なプロンプトによるコスト急増を招くおそれがあります。導入前に入念なガバナンス設計が必要です。</p>
+      </div>
+
+      <div class="card-footer">
+        <a href="https://news.google.com/rss/articles/CBMiQkFVX3lxTE9mZnUwVXBKZy05OW9faHRLUnRuNFNfaDVINUczVkE1TXJTWjdhaXJJaTFqbmRqRHA4ZFlNY1R3eHVnUQ?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <button class="memo-btn" data-title="Microsoft Ignite 2026で刷新されたCopilot知能レイヤー「Work IQ」の全貌" data-url="https://news.google.com/rss/articles/CBMiQkFVX3lxTE9mZnUwVXBKZy05OW9faHRLUnRuNFNfaDVINUczVkE1TXJTWjdhaXJJaTFqbmRqRHA4ZFlNY1R3eHVnUQ?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
+      </div>
+    </article>
+    
+
+    
+    <div class="section-label">Quick Radar — サクッと視野を広げる</div>
+    <div class="radar-grid">
+      
+      <article class="radar-card">
+        <div>
+          <div class="card-meta">
+            <span class="badge badge-ms">MS小ネタ</span>
+          </div>
+          <h3 class="radar-title">「Microsoft To Do」が2027年6月30日にアプリ提供終了へ</h3>
+          <p class="radar-body">マイクロソフトの人気タスク管理アプリ「Microsoft To Do」が、2027年6月30日をもってサービスを終了すると発表されました。法人向けユーザーは「Microsoft Planner」への移行が推奨されており、個人向けについては現時点で明確な代替プラットフォームの提供はありません。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>長年親しまれてきた定番タスク管理ツールの終了と移行パスが突如発表され、今後の代替ツールの選定に影響を与えるため。</div>
+        </div>
+        <div class="card-footer">
+          <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxNcFJwZktNakRzNDBTS3c4OVU2dVhfQ1VFaGNURGh0RHFnOThKdXFKVnFaVXVoeTNIZ0ZKRldQMkdXYjk4U05rMDBSS1NaRWZ1MUdGWXkxVVpHOUtoU2tncmlpS3dQWWl3ZzduLXBBa29YTEdUeTQ1RUlaZ2l3N0pMd2lrUjN5d28?oc=5" target="_blank" rel="noopener">元記事 ↗</a>
+          <button class="memo-btn" data-title="「Microsoft To Do」が2027年6月30日にアプリ提供終了へ" data-url="https://news.google.com/rss/articles/CBMihwFBVV95cUxNcFJwZktNakRzNDBTS3c4OVU2dVhfQ1VFaGNURGh0RHFnOThKdXFKVnFaVXVoeTNIZ0ZKRldQMkdXYjk4U05rMDBSS1NaRWZ1MUdGWXkxVVpHOUtoU2tncmlpS3dQWWl3ZzduLXBBa29YTEdUeTQ1RUlaZ2l3N0pMd2lrUjN5d28?oc=5" onclick="toggleMemo(this)">🔖 メモ</button>
+        </div>
+      </article>
+      
+      <article class="radar-card">
+        <div>
+          <div class="card-meta">
+            <span class="badge badge-ms">MS小ネタ</span>
+          </div>
+          <h3 class="radar-title">Microsoft Entra Connect Healthの脆弱性によるメタデータ漏えい</h3>
+          <p class="radar-body">マイクロソフトは、オンプレミスとクラウドを接続する「Entra Connect Health」において、テナントのメタデータが外部に漏えいする脆弱性が存在したことを公表しました。管理者側での速やかな状況確認と対策が求められるセキュリティインシデントです。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>ID基盤の根幹に関わる脆弱性であり、テナントのセキュリティ設定や監査ログの確認を早急に行う必要があるため。</div>
+        </div>
+        <div class="card-footer">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPNnJHQ0RYM2RucEwyLWwwSmR4NEZOelhiOG9mVUNhVTN2dVFZMVdyQk9UdkRIOHZyNzlYOVEyRDJNaHVkZUZmbWhsRmNZd2VuMF9mQlUzNmlndkoyaUhoSDRmMjdoUVFIaHV6NGVhWDNjcHc0SngtWGlSOVJLZmFib1NlUTlnN0RITTExT3hEUktPZ20ta2FuUlRoWm5zRzA?oc=5" target="_blank" rel="noopener">元記事 ↗</a>
+          <button class="memo-btn" data-title="Microsoft Entra Connect Healthの脆弱性によるメタデータ漏えい" data-url="https://news.google.com/rss/articles/CBMinwFBVV95cUxPNnJHQ0RYM2RucEwyLWwwSmR4NEZOelhiOG9mVUNhVTN2dVFZMVdyQk9UdkRIOHZyNzlYOVEyRDJNaHVkZUZmbWhsRmNZd2VuMF9mQlUzNmlndkoyaUhoSDRmMjdoUVFIaHV6NGVhWDNjcHc0SngtWGlSOVJLZmFib1NlUTlnN0RITTExT3hEUktPZ20ta2FuUlRoWm5zRzA?oc=5" onclick="toggleMemo(this)">🔖 メモ</button>
+        </div>
+      </article>
+      
+    </div>
+    
+
+    <div class="section-label">Cross Analysis — 編集長コラム</div>
+    <section class="column-card">
+      <h2 class="article-title">管理のクラウド化とAI知能の高度化がもたらす、次世代IT運用の形</h2>
+      <p style="margin:0;">今回のニュースでは、IntuneによるWindows Serverのクラウド管理や、Ignite 2026で発表されたCopilotの「Work IQ」刷新など、インフラ管理とAI活用がいずれも「より深いレイヤーでの統合と自動化」に向かっていることが浮き彫りになりました。単なる個別のツール管理から、組織全体のコンテキストを安全かつ一元的にコントロールするアプローチへとシフトしています。管理者は、こうしたエコシステムの進化をキャッチアップし、セキュリティのガバナンスと利便性のバランスを取った設計を今から見据えておく必要があります。</p>
+    </section>
+  </main>
+
+  <div class="memo-bar" id="memoBar">
+    <span id="memoCount">0件選択中</span>
+    <button onclick="copyMemos()">Discord用にコピー</button>
+  </div>
+
+  <script>
+    const savedMemos = new Map();
+    function toggleTheme() {
+      const root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+    }
+    function toggleSize() {
+      const root = document.documentElement;
+      root.dataset.size = root.dataset.size === "normal" ? "large" : "normal";
+    }
+    function toggleGlossary(btn, id) {
+      const box = document.getElementById(id);
+      const isOpen = box.style.display === "block";
+      box.style.display = isOpen ? "none" : "block";
+      btn.classList.toggle("open", !isOpen);
+    }
+    function toggleMemo(btn) {
+      const title = btn.dataset.title;
+      const url = btn.dataset.url;
+      if (savedMemos.has(title)) {
+        savedMemos.delete(title);
+        btn.classList.remove("saved");
+        btn.textContent = btn.textContent.includes("追加") ? "🔖 メモに追加" : "🔖 メモ";
+      } else {
+        savedMemos.set(title, url);
+        btn.classList.add("saved");
+        btn.textContent = "✓ 追加済";
+      }
+      const bar = document.getElementById("memoBar");
+      document.getElementById("memoCount").textContent = `${savedMemos.size}件選択中`;
+      bar.style.display = savedMemos.size > 0 ? "flex" : "none";
+    }
+    function copyMemos() {
+      const lines = ["**📌 気になったトピック (2026/11/23 (Mon))**"];
+      for (const [title, url] of savedMemos.entries()) {
+        lines.push(`- ${title}\n  ${url}`);
+      }
+      navigator.clipboard.writeText(lines.join("\n")).then(() => {
+        alert("Discord の #interest-log に貼れる形式でコピーしました！");
+      });
+    }
+  </script>
+</body>
+</html>

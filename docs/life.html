@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark" data-size="normal">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>私生活用 | DAILY SIGNAL</title>
+  <style>
+    :root {
+      --bg: #0B0F19;
+      --card: #131A2A;
+      --nest: #1A2338;
+      --border: #24304A;
+      --text: #E6EDF7;
+      --muted: #94A3B8;
+      --accent-ms: #818CF8;
+      --accent-stock: #34D399;
+      --accent-ai: #38BDF8;
+      --accent-game: #A78BFA;
+      --accent-trend: #FBBF24;
+      --rose-bg: rgba(244, 63, 94, 0.10);
+      --rose-border: rgba(244, 63, 94, 0.45);
+      --rose-text: #FDA4AF;
+    }
+    [data-theme="light"] {
+      --bg: #F4F6FA;
+      --card: #FFFFFF;
+      --nest: #F1F5F9;
+      --border: #CBD5E1;
+      --text: #0F172A;
+      --muted: #475569;
+      --rose-bg: #FFF1F2;
+      --rose-border: #FDA4AF;
+      --rose-text: #9F1239;
+    }
+    [data-size="large"] { font-size: 18px; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding-bottom: 96px;
+    }
+    a { color: var(--accent-ai); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11, 15, 25, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    [data-theme="light"] header { background: rgba(244, 246, 250, 0.92); }
+    .header-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .brand { display: flex; flex-direction: column; }
+    .brand-title { font-weight: 800; letter-spacing: 0.06em; font-size: 1.05rem; }
+    .brand-sub { font-size: 0.78rem; color: var(--muted); }
+
+    .nav-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tab-link {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .tab-link.active {
+      background: var(--accent-ms);
+      color: #0B0F19;
+      border-color: transparent;
+    }
+    .ctrl-btn {
+      background: var(--nest);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    main { max-width: 920px; margin: 24px auto; padding: 0 16px; }
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin: 28px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 0.78rem;
+    }
+    .badge {
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.74rem;
+      color: #0B0F19;
+    }
+    .badge-ms { background: var(--accent-ms); }
+    .badge-stock { background: var(--accent-stock); }
+    .badge-ai { background: var(--accent-ai); }
+    .badge-game { background: var(--accent-game); }
+    .badge-trend { background: var(--accent-trend); }
+    .tag {
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--nest);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    h2.article-title {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      line-height: 1.45;
+    }
+    .block {
+      background: var(--nest);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .block-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+    .block p { margin: 0; font-size: 0.95rem; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .flow-step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+    }
+    .flow-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-ai);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .glossary { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .chip {
+      background: var(--nest);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .chip.open { border-color: var(--accent-ai); color: var(--accent-ai); }
+    .glossary-box {
+      display: none;
+      background: var(--nest);
+      border-left: 3px solid var(--accent-ai);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+    }
+
+    .contrarian {
+      background: var(--rose-bg);
+      border: 1px solid var(--rose-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 12px;
+    }
+    .contrarian .block-title { color: var(--rose-text); }
+
+    .card-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.84rem;
+    }
+    .memo-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+    .memo-btn.saved {
+      background: var(--accent-stock);
+      color: #0B0F19;
+      border-color: transparent;
+      font-weight: 700;
+    }
+
+    .radar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .radar-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .radar-title { margin: 8px 0; font-size: 1.02rem; line-height: 1.45; }
+    .radar-body { font-size: 0.9rem; color: var(--text); margin: 0 0 10px; }
+    .radar-why { font-size: 0.82rem; color: var(--muted); background: var(--nest); padding: 8px 10px; border-radius: 8px; }
+
+    .column-card {
+      background: linear-gradient(135deg, rgba(129, 140, 248, 0.12), rgba(56, 189, 248, 0.08));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .memo-bar {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E293B;
+      color: #F8FAFC;
+      border: 1px solid var(--accent-stock);
+      border-radius: 999px;
+      padding: 10px 18px;
+      display: none;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      z-index: 50;
+      font-size: 0.88rem;
+    }
+    .memo-bar button {
+      background: var(--accent-stock);
+      color: #0B0F19;
+      border: none;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-title">DAILY SIGNAL — LIFE & SIGNAL EDITION</span>
+        <span class="brand-sub">2026/11/23 (Mon) 発行</span>
+      </div>
+      <div class="nav-group">
+        <a class="tab-link " href="./work.html">💼 MS仕事用</a>
+        <a class="tab-link active" href="./life.html">🌐 私生活用</a>
+        <button class="ctrl-btn" onclick="toggleSize()">A / A+</button>
+        <button class="ctrl-btn" onclick="toggleTheme()">🌙 / ☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-label">Deep Dive — 構造から読み解く</div>
+    
+    
+    <article class="card">
+      <div class="card-meta">
+        <span class="badge badge-stock">株・経済</span>
+        
+        <span class="tag">#AI相場</span>
+        
+        <span class="tag">#半導体</span>
+        
+        <span class="tag">#市場の急落</span>
+        
+      </div>
+      <h2 class="article-title">AI好決算の裏で起きた世界株急落：ナスダック急落が示す相場の現在地と警戒すべきリスク</h2>
+
+      <div class="block">
+        <div class="block-title">📖 これまでのあらすじ・前提</div>
+        <p>AI関連企業が市場の期待を上回る好決算を相次いで発表する一方で、なぜか直近の株式市場ではNASDAQなどが急落し、弱気相場入りが意識される展開となっています。好材料が出尽くしたと受け止められたほか、高すぎる期待値が株価を押し上げていたため、わずかな投資家心理の変化が大きな売りを誘発しました。半導体関連の投信やアジア市場も含め、一時の楽観ムードから急速に冷え込むボラティリティの高い相場環境に突入しています。</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">🔍 何が起きたか・構造の解説</div>
+        <p>市場の構造として、AIブームを牽引してきた半導体やテック株への資金集中が、利益確定売りや金利低下への反応と相まって一気に巻き戻されています。AI需要自体は本物であるものの、株価がその成長スピードをあまりにも先取りして織り込んでいたため、わずかなノイズやマクロ経済の不確実性に対して非常に脆弱な状態になっていました。結果として、優良なAI関連銘柄であっても連れ安するパニック的な側面が強まっています。</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⛓️ 因果・影響の連鎖</div>
+        <div class="flow">
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 1</span>
+            AI関連企業が好決算を発表するも、すでに株価へ過剰に織り込まれていたためサプライズ感が薄れる
+          </div>
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 2</span>
+            高値警戒感から機関投資家が利益確定の売りを急ぎ、NASDAQをはじめとする主要指数が急落
+          </div>
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 3</span>
+            半導体ファンドやアジア市場にも売りが連鎖し、リスクオフの雰囲気が世界全体に波及する
+          </div>
+          
+        </div>
+      </div>
+
+      
+      <div class="glossary">
+        
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-1')">📘 弱気相場</button>
+        
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-2')">📘 ボラティリティ</button>
+        
+      </div>
+      
+      <div id="g-1-1" class="glossary-box">
+        <strong>弱気相場：</strong>高値から20%以上下落した状態が続く、市場全体の心理が冷え込んだ相場環境のこと
+      </div>
+      
+      <div id="g-1-2" class="glossary-box">
+        <strong>ボラティリティ：</strong>株価の変動の激しさを示す指標。これが高いほど短期間での価格の上下が大きい
+      </div>
+      
+      
+
+      <div class="contrarian">
+        <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
+        <p>「押し目買いのチャンス」と安易に飛びつくのは危険です。AIの長期的な成長ストーリーは不変ですが、金利環境や地政学リスク、さらには市場参加者の心理的パニックが収まるまでの間は、想定以上に下値が切り下がるリスクを考慮した慎重な資金管理が求められます。</p>
+      </div>
+
+      <div class="card-footer">
+        <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9PRlhjNk44QjdXVEZuSVR3RTZ0NGQ1SmdNLURkUHlLTGhKZ3RXYy1Ndk1JUUFqMDAxS2hSeGgxV3NKcHkxVDEtaHZ4blFJcTgxS3JBcWNEUmRuUE9tR2pYanh1VQ?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <button class="memo-btn" data-title="AI好決算の裏で起きた世界株急落：ナスダック急落が示す相場の現在地と警戒すべきリスク" data-url="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9PRlhjNk44QjdXVEZuSVR3RTZ0NGQ1SmdNLURkUHlLTGhKZ3RXYy1Ndk1JUUFqMDAxS2hSeGgxV3NKcHkxVDEtaHZ4blFJcTgxS3JBcWNEUmRuUE9tR2pYanh1VQ?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
+      </div>
+    </article>
+    
+    
+    <article class="card">
+      <div class="card-meta">
+        <span class="badge badge-ai">AI・テック</span>
+        
+        <span class="tag">#OpenAI</span>
+        
+        <span class="tag">#ハードウェア設計</span>
+        
+        <span class="tag">#開発効率化</span>
+        
+      </div>
+      <h2 class="article-title">OpenAIがAMDのGPU回路を最大14%改善：AIが自らのハードウェア設計を加速させる構造変化</h2>
+
+      <div class="block">
+        <div class="block-title">📖 これまでのあらすじ・前提</div>
+        <p>これまでAIは主にソフトウェアやテキスト生成の領域で進化を続けてきましたが、ここに来て半導体やハードウェアの物理設計そのものへの介入を強めています。特にOpenAIがAMDのGPU回路設計をAIを用いて大幅に改善し、本来なら約1年かかるプロセスを5カ月弱で成し遂げたというニュースは、テック業界に大きな衝撃を与えました。AIの開発スピードが、人間の物理的な設計限界を突破し始めるフェーズに入っています。</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">🔍 何が起きたか・構造の解説</div>
+        <p>このブレイクスルーの本質は、AIが単なる「コードの自動生成」から「複雑な半導体回路の最適化」というハードウェアの根幹領域へ進出した点にあります。AIによる高速なシミュレーションと設計補助により、半導体の性能向上サイクルがこれまでの常識を覆すスピードで回るようになります。これにより、AI開発に必要な計算リソースの調達やGPUのボトルネック問題が、AI自身の力で急速に解消されていく未来が現実味を帯びてきました。</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⛓️ 因果・影響の連鎖</div>
+        <div class="flow">
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 1</span>
+            AIを活用した高度な回路シミュレーションにより、設計のボトルネックを特定して自動修正する
+          </div>
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 2</span>
+            人間では1年かかる設計・検証プロセスが数カ月に短縮され、ハードウェア開発の圧倒的な効率化が実現する
+          </div>
+          
+          <div class="flow-step">
+            <span class="flow-num">STEP 3</span>
+            より高性能なGPUや半導体が一層スピーディーに市場供給され、AI全体の進化速度がさらに加速する
+          </div>
+          
+        </div>
+      </div>
+
+      
+      <div class="glossary">
+        
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-1')">📘 GPU</button>
+        
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-2')">📘 回路設計</button>
+        
+      </div>
+      
+      <div id="g-2-1" class="glossary-box">
+        <strong>GPU：</strong>画像処理だけでなく、大量のデータを同時に計算するAI開発に不可欠な半導体チップ
+      </div>
+      
+      <div id="g-2-2" class="glossary-box">
+        <strong>回路設計：</strong>半導体チップ上に電気信号が通る複雑な道筋を配置し、効率よく動作させるためのエンジニアリング作業
+      </div>
+      
+      
+
+      <div class="contrarian">
+        <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
+        <p>AIがハードウェアを急速に最適化できるようになると、特定の半導体メーカーの独自設計ノウハウの価値が相対的に低下し、業界のパワーバランスが急変するリスクがあります。また、設計のブラックボックス化が進むことで、ハードウェア起因の致命的なバグやセキュリティ脆弱性が見逃される懸念にも注意が必要です。</p>
+      </div>
+
+      <div class="card-footer">
+        <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFB5cmk1MWhfOEdqeVMyamFOdVlyU2w5ZmJrbWtYM3FIUkJUUmhFMUVlR3E5SE0xblhGT2RhYUJWbXl0ZUdFam5zazBzc1ozTzlpbDNyU0F5aHdXb2pmVElkVDR1WUN2WXJuamZFcThLcDVWWlNhLXc5b2hNOUJzazg?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <button class="memo-btn" data-title="OpenAIがAMDのGPU回路を最大14%改善：AIが自らのハードウェア設計を加速させる構造変化" data-url="https://news.google.com/rss/articles/CBMif0FVX3lxTFB5cmk1MWhfOEdqeVMyamFOdVlyU2w5ZmJrbWtYM3FIUkJUUmhFMUVlR3E5SE0xblhGT2RhYUJWbXl0ZUdFam5zazBzc1ozTzlpbDNyU0F5aHdXb2pmVElkVDR1WUN2WXJuamZFcThLcDVWWlNhLXc5b2hNOUJzazg?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
+      </div>
+    </article>
+    
+
+    
+    <div class="section-label">Quick Radar — サクッと視野を広げる</div>
+    <div class="radar-grid">
+      
+      <article class="radar-card">
+        <div>
+          <div class="card-meta">
+            <span class="badge badge-game">ゲーム</span>
+          </div>
+          <h3 class="radar-title">名作インディー『The Binding of Isaac』新モードにAI生成BGMが混入、生みの親も困惑して削除要請へ</h3>
+          <p class="radar-body">人気ローグライクゲームの最新アプデで追加された隠しモードのBGMにAI生成音声が使われていたことが発覚しました。ファンやクリエイターの間で大きな批判が巻き起こり、原作者がチームに即座の削除を要請する異例の事態に発展しています。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>ゲーム制作における生成AIの利用是非をめぐり、クリエイターの倫理観と開発効率化の境界線が問われている現在の象徴的な事件だから。</div>
+        </div>
+        <div class="card-footer">
+          <a href="https://automaton-media.com/articles/newsjp/20261123-480440/" target="_blank" rel="noopener">元記事 ↗</a>
+          <button class="memo-btn" data-title="名作インディー『The Binding of Isaac』新モードにAI生成BGMが混入、生みの親も困惑して削除要請へ" data-url="https://automaton-media.com/articles/newsjp/20261123-480440/" onclick="toggleMemo(this)">🔖 メモ</button>
+        </div>
+      </article>
+      
+      <article class="radar-card">
+        <div>
+          <div class="card-meta">
+            <span class="badge badge-game">ゲーム</span>
+          </div>
+          <h3 class="radar-title">劇場アニメ公開が追い風：TYPE-MOON『魔法使いの夜』Steam版が発売3年目にして過去最高の売上を記録</h3>
+          <p class="radar-body">2Dビジュアルノベルの傑作として知られる『魔法使いの夜』のPC（Steam）版が、劇場アニメ化の公開を契機に異例のヒットとなっています。セールも相まって、発売から時間が経過したタイトルが再評価される好例となっています。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>メディアミックス（アニメ化）が、既存のPC向け名作タイトルの販売数にどれほどの爆発的な相乗効果をもたらすかを示す好事例だから。</div>
+        </div>
+        <div class="card-footer">
+          <a href="https://automaton-media.com/articles/newsjp/withc-20261122-480377/" target="_blank" rel="noopener">元記事 ↗</a>
+          <button class="memo-btn" data-title="劇場アニメ公開が追い風：TYPE-MOON『魔法使いの夜』Steam版が発売3年目にして過去最高の売上を記録" data-url="https://automaton-media.com/articles/newsjp/withc-20261122-480377/" onclick="toggleMemo(this)">🔖 メモ</button>
+        </div>
+      </article>
+      
+      <article class="radar-card">
+        <div>
+          <div class="card-meta">
+            <span class="badge badge-trend">世間の話題</span>
+          </div>
+          <h3 class="radar-title">PCに勝手にインストールされスクショ機能を上書きするAdobe Express Photosにユーザーから大ブーイング</h3>
+          <p class="radar-body">ここ1ヶ月ほど、Windows環境で「Adobe Express Photos」が勝手にインストールされる事例が多発しています。しかも定番の画面キャプチャショートカットを機能劣化版で上書きするため、SNSや問い合わせ窓口で怒りの声が相次いでいます。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>大手ソフトウェアベンダーの強引な機能訴求が、ユーザーの利便性を損ねて強力な反発を生んでいる実態が浮き彫りになっているから。</div>
+        </div>
+        <div class="card-footer">
+          <a href="https://posfie.com/@petaritape/p/tgzVdbL" target="_blank" rel="noopener">元記事 ↗</a>
+          <button class="memo-btn" data-title="PCに勝手にインストールされスクショ機能を上書きするAdobe Express Photosにユーザーから大ブーイング" data-url="https://posfie.com/@petaritape/p/tgzVdbL" onclick="toggleMemo(this)">🔖 メモ</button>
+        </div>
+      </article>
+      
+      <article class="radar-card">
+        <div>
+          <div class="card-meta">
+            <span class="badge badge-trend">世間の話題</span>
+          </div>
+          <h3 class="radar-title">多忙を極める首相の国会拘束時間を削減すべきか、自民党が「首相出席削減」の議論を本格化</h3>
+          <p class="radar-body">公務や外交に追われる内閣総理大臣の国会出席日数を減らし、拘束時間をスリム化するための議論が自民党内で本格化しています。野党側からは審議拒否や民主主義の軽視につながるとして激しい反発が予想されています。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>政権運営の効率化と国会での説明責任という、日本の政治体制における長年の構造的課題が再び表面化しているから。</div>
+        </div>
+        <div class="card-footer">
+          <a href="https://www.jiji.com/sp/article?k=2026112200200&g=pol" target="_blank" rel="noopener">元記事 ↗</a>
+          <button class="memo-btn" data-title="多忙を極める首相の国会拘束時間を削減すべきか、自民党が「首相出席削減」の議論を本格化" data-url="https://www.jiji.com/sp/article?k=2026112200200&g=pol" onclick="toggleMemo(this)">🔖 メモ</button>
+        </div>
+      </article>
+      
+    </div>
+    
+
+    <div class="section-label">Cross Analysis — 編集長コラム</div>
+    <section class="column-card">
+      <h2 class="article-title">効率化の裏にある「自動化の暴走」と人間側のコントロールの重要性</h2>
+      <p style="margin:0;">本日はAIが半導体設計を劇的にスピードアップさせる一方で、ゲーム業界ではAI生成物の混入によるクリエイターの倫理的トラブルが発生し、さらに日常のPC環境ではソフトウェアの強引な自動インストールがユーザーの反発を買うなど、「自動化」や「効率化」にまつわる光と影が浮き彫りになりました。技術やシステムが人間の手を離れて自走を始めるとき、どこまでを許容し、どこで人間がブレーキを踏むべきかというガバナンスの視点が、ビジネスから私生活のツール選定に至るまでますます重要になっています。</p>
+    </section>
+  </main>
+
+  <div class="memo-bar" id="memoBar">
+    <span id="memoCount">0件選択中</span>
+    <button onclick="copyMemos()">Discord用にコピー</button>
+  </div>
+
+  <script>
+    const savedMemos = new Map();
+    function toggleTheme() {
+      const root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+    }
+    function toggleSize() {
+      const root = document.documentElement;
+      root.dataset.size = root.dataset.size === "normal" ? "large" : "normal";
+    }
+    function toggleGlossary(btn, id) {
+      const box = document.getElementById(id);
+      const isOpen = box.style.display === "block";
+      box.style.display = isOpen ? "none" : "block";
+      btn.classList.toggle("open", !isOpen);
+    }
+    function toggleMemo(btn) {
+      const title = btn.dataset.title;
+      const url = btn.dataset.url;
+      if (savedMemos.has(title)) {
+        savedMemos.delete(title);
+        btn.classList.remove("saved");
+        btn.textContent = btn.textContent.includes("追加") ? "🔖 メモに追加" : "🔖 メモ";
+      } else {
+        savedMemos.set(title, url);
+        btn.classList.add("saved");
+        btn.textContent = "✓ 追加済";
+      }
+      const bar = document.getElementById("memoBar");
+      document.getElementById("memoCount").textContent = `${savedMemos.size}件選択中`;
+      bar.style.display = savedMemos.size > 0 ? "flex" : "none";
+    }
+    function copyMemos() {
+      const lines = ["**📌 気になったトピック (2026/11/23 (Mon))**"];
+      for (const [title, url] of savedMemos.entries()) {
+        lines.push(`- ${title}\n  ${url}`);
+      }
+      navigator.clipboard.writeText(lines.join("\n")).then(() => {
+        alert("Discord の #interest-log に貼れる形式でコピーしました！");
+      });
+    }
+  </script>
+</body>
+</html>
