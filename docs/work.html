@@ -347,7 +347,7 @@
     <div class="header-inner">
       <div class="brand">
         <span class="brand-title">DAILY SIGNAL — MS WORK EDITION</span>
-        <span class="brand-sub">2026/11/24 (Tue) 発行</span>
+        <span class="brand-sub">2026/11/25 (Wed) 発行</span>
       </div>
       <div class="nav-group">
         <a class="tab-link active" href="./work.html">💼 MS仕事用</a>
@@ -370,19 +370,19 @@
         
         <span class="tag">#脆弱性</span>
         
-        <span class="tag">#管理者リスク</span>
+        <span class="tag">#管理者保護</span>
         
       </div>
-      <h2 class="article-title">MicrosoftがEntra IDの深刻なテナント乗っ取りバグを修正、監視サービスの不備も露呈</h2>
+      <h2 class="article-title">Entraの欠陥を109日間見抜けず、管理者のメールアドレスが流出：セキュリティ対策の盲点</h2>
 
       <div class="block">
         <div class="block-title">📖 これまでのあらすじ・前提</div>
-        <p>近年、企業のクラウド移行が進む中で、アイデンティティ管理の中心となるMicrosoft Entra IDのセキュリティが極めて重要な防衛線となっています。しかし、高度化する攻撃者の手法に対して、クラウド基盤のわずかな隙をつく脆弱性が発見される事例が後を絶ちません。今回は、Entra IDにおける深刻なテナント乗っ取りの危険性と、関連する監視サービスでの情報流出が立て続けに報じられました。管理者にとって、自社テナントの防衛体制を再点検すべき局面を迎えています。</p>
+        <p>Microsoft Entra IDにおいて、管理者のメールアドレスやテナント情報が不正に取得される脆弱性が発覚した。問題の発覚までに109日間の遅れが生じたことが報じられ、クラウドアイデンティティ基盤の監視体制に改めて注目が集まっている。攻撃者は細工された手法を用いてテナントの内部情報を狙っており、早期検知の難しさが浮き彫りとなった。マイクロソフトはすでに修正パッチを適用しているが、管理者による迅速な確認と設定見直しが急務となっている。</p>
       </div>
 
       <div class="block">
         <div class="block-title">🔍 何が起きたか・構造の解説</div>
-        <p>報道によると、MicrosoftはEntra IDにおいてテナントの完全乗っ取りにつながる深刻なバグを修正しました。これに加え、Entra Connect Healthという監視サービスの欠陥を突かれ、管理者のメールアドレスなどの重要情報が読み取られる事態も発生しています。特筆すべきは、Microsoftがこの欠陥を長期間（100日以上）見抜けなかった点であり、クラウド監視・運用ツール自体のセキュリティ担保における課題を浮き彫りにしています。攻撃者がID基盤を掌握すれば、組織全体のデータやシステムへの不正アクセスが容易になるため、影響範囲は甚大です。</p>
+        <p>今回の問題の背景には、Entra Connect Healthなどの監視・連携ツールにおけるアクセス制御や検証プロセスの不備があったと推測される。攻撃者はこの隙を突いて内部情報への不正アクセスを試み、長期にわたって検知されずに機微情報を窃取した。クラウドサービスは利便性が高い一方で、全体像の把握が難しく、ログ監視の粒度が低いと異常兆候を見逃すリスクが常に伴う。企業側はデフォルトの設定だけに頼らず、API呼び出しやテナント間のアクセス権を厳格に監査する体制が必要である。</p>
       </div>
 
       <div class="block">
@@ -391,17 +391,17 @@
           
           <div class="flow-step">
             <span class="flow-num">STEP 1</span>
-            Entra IDおよび関連監視サービスの脆弱性が発覚し、悪用リスクが表面化
+            管理ツールやAPIのアクセス制御におけるわずかな不備を突かれ、不正アクセスが発生
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 2</span>
-            攻撃者によるテナント乗っ取りや管理者情報の流出の可能性が生じる
+            異常が長期間検知されず、管理者のメールアドレスなどの重要データが外部へ流出
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 3</span>
-            早急なパッチ適用と、テナント全体のアクセス権限・監視ログの監査が必須となる
+            ベンダーによる修正と同時に、テナント管理者は監査ログの常時監視とアクセス権の棚卸しを強化する事態に
           </div>
           
         </div>
@@ -410,35 +410,35 @@
       
       <div class="glossary">
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-1-1')">📘 Entra ID</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-1')">📘 Microsoft Entra ID</button>
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-1-2')">📘 テナント乗っ取り</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-2')">📘 テナント</button>
         
       </div>
       
       <div id="g-1-1" class="glossary-box">
-        <strong>Entra ID：</strong>旧Azure AD。Microsoft 365や各種クラウドサービスへのアクセスを統合管理するクラウド基盤。
+        <strong>Microsoft Entra ID：</strong>クラウド上のユーザー認証やアクセス権限を一元管理する、Microsoft 365の中核となるID管理基盤。
       </div>
       
       <div id="g-1-2" class="glossary-box">
-        <strong>テナント乗っ取り：</strong>組織のクラウド環境全体の管理者権限が奪われ、外部の攻撃者に完全に支配されてしまう最悪級のセキュリティインシデント。
+        <strong>テナント：</strong>クラウドサービス上で企業や組織ごとに独立して割り当てられた、専用の利用環境およびデータ領域のこと。
       </div>
       
       
 
       <div class="contrarian">
         <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
-        <p>「クラウドだからMicrosoftがすべて安全に管理してくれる」という前提は危険です。ベンダー側のパッチ適用だけでなく、管理者自身のアクセス権の最小化や多要素認証の徹底が欠かせません。</p>
+        <p>「クラウドだから安全」という過信は禁物であり、Microsoft側の修正だけに頼る運用は危険である。オンプレミスからクラウドへの移行期こそ、管理者の権限昇格やAPIの挙動に対するゼロトラストの原則に基づいた監視設計が不可欠である。</p>
       </div>
 
       <textarea hidden id="ai-prompt-dd-1">以下のニュースについて深掘りして壁打ちしたいです。
 
-【タイトル】MicrosoftがEntra IDの深刻なテナント乗っ取りバグを修正、監視サービスの不備も露呈
+【タイトル】Entraの欠陥を109日間見抜けず、管理者のメールアドレスが流出：セキュリティ対策の盲点
 【カテゴリ】Microsoft 基盤・セキュリティ
-【前提・あらすじ】近年、企業のクラウド移行が進む中で、アイデンティティ管理の中心となるMicrosoft Entra IDのセキュリティが極めて重要な防衛線となっています。しかし、高度化する攻撃者の手法に対して、クラウド基盤のわずかな隙をつく脆弱性が発見される事例が後を絶ちません。今回は、Entra IDにおける深刻なテナント乗っ取りの危険性と、関連する監視サービスでの情報流出が立て続けに報じられました。管理者にとって、自社テナントの防衛体制を再点検すべき局面を迎えています。
-【構造・要点】報道によると、MicrosoftはEntra IDにおいてテナントの完全乗っ取りにつながる深刻なバグを修正しました。これに加え、Entra Connect Healthという監視サービスの欠陥を突かれ、管理者のメールアドレスなどの重要情報が読み取られる事態も発生しています。特筆すべきは、Microsoftがこの欠陥を長期間（100日以上）見抜けなかった点であり、クラウド監視・運用ツール自体のセキュリティ担保における課題を浮き彫りにしています。攻撃者がID基盤を掌握すれば、組織全体のデータやシステムへの不正アクセスが容易になるため、影響範囲は甚大です。
-【注意点・逆張り視点】「クラウドだからMicrosoftがすべて安全に管理してくれる」という前提は危険です。ベンダー側のパッチ適用だけでなく、管理者自身のアクセス権の最小化や多要素認証の徹底が欠かせません。
-【元記事URL】https://news.google.com/rss/articles/CBMifkFVX3lxTFB3UkJJcUFwdWZhUTFhLUlRQWlwenExV3MyR2U5TG5YVURHRVNpU1ZENkh6RU9PdWlWQ0pqOXpoMlBZXzdxdDhpZEoyZ19vd3U3Nmloczk5RW9oQTZZaUpOMmxSNkwzRG5yZzA1RkhKRVJDUE12TTRjWnM0TWVxZw?oc=5
+【前提・あらすじ】Microsoft Entra IDにおいて、管理者のメールアドレスやテナント情報が不正に取得される脆弱性が発覚した。問題の発覚までに109日間の遅れが生じたことが報じられ、クラウドアイデンティティ基盤の監視体制に改めて注目が集まっている。攻撃者は細工された手法を用いてテナントの内部情報を狙っており、早期検知の難しさが浮き彫りとなった。マイクロソフトはすでに修正パッチを適用しているが、管理者による迅速な確認と設定見直しが急務となっている。
+【構造・要点】今回の問題の背景には、Entra Connect Healthなどの監視・連携ツールにおけるアクセス制御や検証プロセスの不備があったと推測される。攻撃者はこの隙を突いて内部情報への不正アクセスを試み、長期にわたって検知されずに機微情報を窃取した。クラウドサービスは利便性が高い一方で、全体像の把握が難しく、ログ監視の粒度が低いと異常兆候を見逃すリスクが常に伴う。企業側はデフォルトの設定だけに頼らず、API呼び出しやテナント間のアクセス権を厳格に監査する体制が必要である。
+【注意点・逆張り視点】「クラウドだから安全」という過信は禁物であり、Microsoft側の修正だけに頼る運用は危険である。オンプレミスからクラウドへの移行期こそ、管理者の権限昇格やAPIの挙動に対するゼロトラストの原則に基づいた監視設計が不可欠である。
+【元記事URL】https://news.google.com/rss/articles/CBMiU0FVX3lxTE5MVFdIdXE3eFFUNTQ2SmNpNVl2TlVpamxnbGJveWJuSjRtLTlrRUpTWThfY3FPRlpVQllTODlGOHAzd1B4MWdmNUg0VVgyVThiZUVB?oc=5
 
 上記を踏まえて、以下の観点でさらに踏み込んで解説してください。
 1. エンタープライズ環境（Microsoft 365 / Azure / Intune / Entra ID等）の実務・設計への具体的な影響
@@ -446,10 +446,10 @@
 3. 次に私が深掘り・確認すべき論点（3つ）</textarea>
 
       <div class="card-footer">
-        <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTFB3UkJJcUFwdWZhUTFhLUlRQWlwenExV3MyR2U5TG5YVURHRVNpU1ZENkh6RU9PdWlWQ0pqOXpoMlBZXzdxdDhpZEoyZ19vd3U3Nmloczk5RW9oQTZZaUpOMmxSNkwzRG5yZzA1RkhKRVJDUE12TTRjWnM0TWVxZw?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5MVFdIdXE3eFFUNTQ2SmNpNVl2TlVpamxnbGJveWJuSjRtLTlrRUpTWThfY3FPRlpVQllTODlGOHAzd1B4MWdmNUg0VVgyVThiZUVB?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
         <div class="footer-actions">
           <button class="ai-btn" onclick="openDeepDive('ai-prompt-dd-1')">🤖 AIで深掘り</button>
-          <button class="memo-btn" data-title="MicrosoftがEntra IDの深刻なテナント乗っ取りバグを修正、監視サービスの不備も露呈" data-url="https://news.google.com/rss/articles/CBMifkFVX3lxTFB3UkJJcUFwdWZhUTFhLUlRQWlwenExV3MyR2U5TG5YVURHRVNpU1ZENkh6RU9PdWlWQ0pqOXpoMlBZXzdxdDhpZEoyZ19vd3U3Nmloczk5RW9oQTZZaUpOMmxSNkwzRG5yZzA1RkhKRVJDUE12TTRjWnM0TWVxZw?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
+          <button class="memo-btn" data-title="Entraの欠陥を109日間見抜けず、管理者のメールアドレスが流出：セキュリティ対策の盲点" data-url="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5MVFdIdXE3eFFUNTQ2SmNpNVl2TlVpamxnbGJveWJuSjRtLTlrRUpTWThfY3FPRlpVQllTODlGOHAzd1B4MWdmNUg0VVgyVThiZUVB?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
         </div>
       </div>
     </article>
@@ -457,25 +457,25 @@
     
     <article class="card">
       <div class="card-meta">
-        <span class="badge badge-ms">Microsoft AI・クラウド</span>
+        <span class="badge badge-ms">Microsoft AI・クラウド・モダンワーク</span>
         
         <span class="tag">#Copilot</span>
         
-        <span class="tag">#Office連携</span>
+        <span class="tag">#Windows</span>
         
-        <span class="tag">#新機能・提案ネタ</span>
+        <span class="tag">#OSの未来</span>
         
       </div>
-      <h2 class="article-title">MicrosoftがCopilotの機能を大幅拡張、会話型編集から専用AIモデル開発まで実務へ直結</h2>
+      <h2 class="article-title">Windowsはもはや“ランチャー”になる？ Copilot新画面「Home」とローカルAI戦略が示すOSの未来</h2>
 
       <div class="block">
         <div class="block-title">📖 これまでのあらすじ・前提</div>
-        <p>企業の生産性向上を切り札として導入が進むMicrosoft 365 Copilotですが、単なるチャットツールとしての利用から、業務アプリケーションの奥深くへ統合されるフェーズへと移行しています。Microsoftは自社AIモデル（MAI）の開発や、Word・Excelでの高度な会話型編集機能の拡充を次々と発表しています。これにより、現場のユーザーがより自然に、かつ高度にAIを活用できる環境が整いつつあり、IT部門やDX推進担当者にとっては絶好の提案・活用ネタとなっています。</p>
+        <p>MicrosoftはWindowsにおけるAI統合を急速に推し進めており、Copilotの新画面「Home」やローカルAIを活用した機能強化が次々と発表されている。これまでの「アプリを起動して作業するOS」から、AIがユーザーの意図を汲み取ってシームレスにタスクを仲介する「仕事のOS」へと役割が変貌しつつある。ビジネス現場においては、単なる検索補助を超えて、日常的な業務フローそのものをAIが駆動する未来像が現実味を帯びてきた。</p>
       </div>
 
       <div class="block">
         <div class="block-title">🔍 何が起きたか・構造の解説</div>
-        <p>今回のアップデートの核心は、Copilotが単なる「答えを返すアシスタント」から「アプリを直接操作・編集するパートナー」へ進化している点です。ChatGPTのように会話するだけでWordやExcelの文書・数値を書き換えることが可能になり、Formsのアンケート結果からCopilotが分析の着眼点を自動提案する機能なども実用化されています。また、裏側では独自のAIモデル群（MAI）を急速に整えており、Microsoftエコシステム全体でのAI処理能力と応答速度の底上げが図られています。</p>
+        <p>今回のアップデートや戦略の根底にあるのは、OSのインターフェースレイヤーをAIが完全に包み込む構造への転換である。ユーザーは細かなアプリの切り替えや複雑なコマンド入力を行う必要がなくなり、Copilotがハブとなって必要な機能やデータへアクセス・処理を代行する。これにより、Windows自体はAIエージェントを起動・管理するための「ランチャー」としての性格を強めていく。企業ITの観点では、この新しいUI/UXがエンドユーザーの生産性を劇的に変える一方、ローカル環境でのデータ処理やプライバシー保護のガバナンスが新たな課題となる。</p>
       </div>
 
       <div class="block">
@@ -484,17 +484,17 @@
           
           <div class="flow-step">
             <span class="flow-num">STEP 1</span>
-            Microsoftが自社AIモデルの拡充とアプリケーション統合を加速
+            Copilotの機能拡張と新画面「Home」の導入により、OSの操作パラダイムが変化
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 2</span>
-            WordやExcelなどの主要アプリ上で、自然な会話による直接編集や高度な分析が可能になる
+            ユーザーは個別アプリの操作を意識せず、AIを介した自然言語でのタスク実行が主流に
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 3</span>
-            企業の業務効率が劇的に向上し、具体的な導入効果を顧客へ提案しやすくなる
+            Windowsの存在価値が再定義され、企業はAI前提の端末管理とセキュリティ方針への適応を迫られる
           </div>
           
         </div>
@@ -503,35 +503,35 @@
       
       <div class="glossary">
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-2-1')">📘 MAI</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-1')">📘 Copilot</button>
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-2-2')">📘 Copilot Agent Builder</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-2')">📘 ローカルAI</button>
         
       </div>
       
       <div id="g-2-1" class="glossary-box">
-        <strong>MAI：</strong>Microsoftが独自に開発・展開を急ぐ一連の大規模言語モデル（AIモデル）の総称。
+        <strong>Copilot：</strong>Microsoftの各製品に統合された生成AIアシスタント。文書作成やデータ分析、業務の自動化をサポートする。
       </div>
       
       <div id="g-2-2" class="glossary-box">
-        <strong>Copilot Agent Builder：</strong>自社独自の業務に合わせた専用のAIエージェントをノーコード・ローコードで構築できる機能。
+        <strong>ローカルAI：</strong>クラウド上のサーバーではなく、手元のデバイス（PCのNPU等）上で直接実行されるAIモデルのこと。
       </div>
       
       
 
       <div class="contrarian">
         <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
-        <p>機能がどれほど高度化しても、社内のデータガバナンスやプロンプトの適切な管理が行われていなければ、誤情報の生成や情報漏洩のリスクを抱えることになります。</p>
+        <p>AIによる自動化の利便性ばかりに目を奪われがちだが、エンドユーザーが意図しないドラフトの自動生成や予期せぬ挙動に悩まされる現場も少なくない。管理者は「AIが勝手に動きすぎるリスク」をコントロールするポリシー設定をあらかじめ用意しておく必要がある。</p>
       </div>
 
       <textarea hidden id="ai-prompt-dd-2">以下のニュースについて深掘りして壁打ちしたいです。
 
-【タイトル】MicrosoftがCopilotの機能を大幅拡張、会話型編集から専用AIモデル開発まで実務へ直結
-【カテゴリ】Microsoft AI・クラウド
-【前提・あらすじ】企業の生産性向上を切り札として導入が進むMicrosoft 365 Copilotですが、単なるチャットツールとしての利用から、業務アプリケーションの奥深くへ統合されるフェーズへと移行しています。Microsoftは自社AIモデル（MAI）の開発や、Word・Excelでの高度な会話型編集機能の拡充を次々と発表しています。これにより、現場のユーザーがより自然に、かつ高度にAIを活用できる環境が整いつつあり、IT部門やDX推進担当者にとっては絶好の提案・活用ネタとなっています。
-【構造・要点】今回のアップデートの核心は、Copilotが単なる「答えを返すアシスタント」から「アプリを直接操作・編集するパートナー」へ進化している点です。ChatGPTのように会話するだけでWordやExcelの文書・数値を書き換えることが可能になり、Formsのアンケート結果からCopilotが分析の着眼点を自動提案する機能なども実用化されています。また、裏側では独自のAIモデル群（MAI）を急速に整えており、Microsoftエコシステム全体でのAI処理能力と応答速度の底上げが図られています。
-【注意点・逆張り視点】機能がどれほど高度化しても、社内のデータガバナンスやプロンプトの適切な管理が行われていなければ、誤情報の生成や情報漏洩のリスクを抱えることになります。
-【元記事URL】https://news.google.com/rss/articles/CBMicEFVX3lxTE4zVnBCd3F1TURjZXpidU5HMkpDWGc0dVRQTW9LaFI3UzZOcjc5TWJvclFxLWpESkdibmZEbU9XZ2hfN1YtQjNDcWszUkxOUG5KMXZBYm1MUFU3aHdUOHRrYnp4Yk5TSzNDUTM4SmM0a3k?oc=5
+【タイトル】Windowsはもはや“ランチャー”になる？ Copilot新画面「Home」とローカルAI戦略が示すOSの未来
+【カテゴリ】Microsoft AI・クラウド・モダンワーク
+【前提・あらすじ】MicrosoftはWindowsにおけるAI統合を急速に推し進めており、Copilotの新画面「Home」やローカルAIを活用した機能強化が次々と発表されている。これまでの「アプリを起動して作業するOS」から、AIがユーザーの意図を汲み取ってシームレスにタスクを仲介する「仕事のOS」へと役割が変貌しつつある。ビジネス現場においては、単なる検索補助を超えて、日常的な業務フローそのものをAIが駆動する未来像が現実味を帯びてきた。
+【構造・要点】今回のアップデートや戦略の根底にあるのは、OSのインターフェースレイヤーをAIが完全に包み込む構造への転換である。ユーザーは細かなアプリの切り替えや複雑なコマンド入力を行う必要がなくなり、Copilotがハブとなって必要な機能やデータへアクセス・処理を代行する。これにより、Windows自体はAIエージェントを起動・管理するための「ランチャー」としての性格を強めていく。企業ITの観点では、この新しいUI/UXがエンドユーザーの生産性を劇的に変える一方、ローカル環境でのデータ処理やプライバシー保護のガバナンスが新たな課題となる。
+【注意点・逆張り視点】AIによる自動化の利便性ばかりに目を奪われがちだが、エンドユーザーが意図しないドラフトの自動生成や予期せぬ挙動に悩まされる現場も少なくない。管理者は「AIが勝手に動きすぎるリスク」をコントロールするポリシー設定をあらかじめ用意しておく必要がある。
+【元記事URL】https://news.google.com/rss/articles/CBMiaEFVX3lxTE5fUXRnbDFCaG04dy1taXFacVJ3Y1NfWnhsN1A2dnJ5c0RaR2hGLWFWRWI0VDFrVTY5V0ozdXZ1SXlJN3RPVnUxXzVYakhlMkRsN0hqV0ZVMjl5NDJRMS1yellRWHFyb09T0gFoQVVfeXFMTl9RdGdsMUJobTh3LW1pcVpxUndjU19aeGw3UDZ2cnlzRFpHaEYtYVZFYjRUMWtVNjlXSjN1dnVJeUk3dE9WdTFfNVhqSGUyRGw3SGpXRlUyOXk0MlExLXJ6WVFYcXJvT1M?oc=5
 
 上記を踏まえて、以下の観点でさらに踏み込んで解説してください。
 1. エンタープライズ環境（Microsoft 365 / Azure / Intune / Entra ID等）の実務・設計への具体的な影響
@@ -539,10 +539,10 @@
 3. 次に私が深掘り・確認すべき論点（3つ）</textarea>
 
       <div class="card-footer">
-        <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE4zVnBCd3F1TURjZXpidU5HMkpDWGc0dVRQTW9LaFI3UzZOcjc5TWJvclFxLWpESkdibmZEbU9XZ2hfN1YtQjNDcWszUkxOUG5KMXZBYm1MUFU3aHdUOHRrYnp4Yk5TSzNDUTM4SmM0a3k?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5fUXRnbDFCaG04dy1taXFacVJ3Y1NfWnhsN1A2dnJ5c0RaR2hGLWFWRWI0VDFrVTY5V0ozdXZ1SXlJN3RPVnUxXzVYakhlMkRsN0hqV0ZVMjl5NDJRMS1yellRWHFyb09T0gFoQVVfeXFMTl9RdGdsMUJobTh3LW1pcVpxUndjU19aeGw3UDZ2cnlzRFpHaEYtYVZFYjRUMWtVNjlXSjN1dnVJeUk3dE9WdTFfNVhqSGUyRGw3SGpXRlUyOXk0MlExLXJ6WVFYcXJvT1M?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
         <div class="footer-actions">
           <button class="ai-btn" onclick="openDeepDive('ai-prompt-dd-2')">🤖 AIで深掘り</button>
-          <button class="memo-btn" data-title="MicrosoftがCopilotの機能を大幅拡張、会話型編集から専用AIモデル開発まで実務へ直結" data-url="https://news.google.com/rss/articles/CBMicEFVX3lxTE4zVnBCd3F1TURjZXpidU5HMkpDWGc0dVRQTW9LaFI3UzZOcjc5TWJvclFxLWpESkdibmZEbU9XZ2hfN1YtQjNDcWszUkxOUG5KMXZBYm1MUFU3aHdUOHRrYnp4Yk5TSzNDUTM4SmM0a3k?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
+          <button class="memo-btn" data-title="Windowsはもはや“ランチャー”になる？ Copilot新画面「Home」とローカルAI戦略が示すOSの未来" data-url="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5fUXRnbDFCaG04dy1taXFacVJ3Y1NfWnhsN1A2dnJ5c0RaR2hGLWFWRWI0VDFrVTY5V0ozdXZ1SXlJN3RPVnUxXzVYakhlMkRsN0hqV0ZVMjl5NDJRMS1yellRWHFyb09T0gFoQVVfeXFMTl9RdGdsMUJobTh3LW1pcVpxUndjU19aeGw3UDZ2cnlzRFpHaEYtYVZFYjRUMWtVNjlXSjN1dnVJeUk3dE9WdTFfNVhqSGUyRGw3SGpXRlUyOXk0MlExLXJ6WVFYcXJvT1M?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
         </div>
       </div>
     </article>
@@ -557,26 +557,26 @@
           <div class="card-meta">
             <span class="badge badge-ms">MS小ネタ</span>
           </div>
-          <h3 class="radar-title">Microsoft To Doが2027年6月30日に終了へ</h3>
-          <p class="radar-body">人気タスク管理アプリ「Microsoft To Do」のサービス終了が正式にアナウンスされました。過去にWunderlistを吸収・終了させた歴史と同様の流れであり、今後はMicrosoft PlannerやTeamsなど他のタスク管理基盤への移行が求められます。管理者や利用者は長期的なスケジュールを見据えた代替え検討が必要です。</p>
-          <div class="radar-why"><strong>なぜ今話題？：</strong>長年愛用されてきた定番タスク管理ツールに突然の終了期限が設定されたため、移行計画の早期着手が急務となっているから。</div>
+          <h3 class="radar-title">Windows ServersもIntuneで一元管理へ</h3>
+          <p class="radar-body">Microsoft Intuneを用いて、通常のPCだけでなくWindows Serverもクラウドから一括管理できる機能が提供開始されました。サーバーとクライアントの管理基盤を統合することで、IT管理者の運用負荷軽減が期待されます。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>クラウド移行が進む中で、オンプレミス寄りのサーバー群もモダンな管理手法へ統合するニーズが高まっているため。</div>
         </div>
 
         <textarea hidden id="ai-prompt-qr-1">以下のトピックについて、もう少し詳しく教えてください。
 
-【タイトル】Microsoft To Doが2027年6月30日に終了へ
+【タイトル】Windows ServersもIntuneで一元管理へ
 【カテゴリ】MS小ネタ
-【概要】人気タスク管理アプリ「Microsoft To Do」のサービス終了が正式にアナウンスされました。過去にWunderlistを吸収・終了させた歴史と同様の流れであり、今後はMicrosoft PlannerやTeamsなど他のタスク管理基盤への移行が求められます。管理者や利用者は長期的なスケジュールを見据えた代替え検討が必要です。
-【なぜ今話題か】長年愛用されてきた定番タスク管理ツールに突然の終了期限が設定されたため、移行計画の早期着手が急務となっているから。
-【元記事URL】https://news.google.com/rss/articles/CBMihwFBVV95cUxNcFJwZktNakRzNDBTS3c4OVU2dVhfQ1VFaGNURGh0RHFnOThKdXFKVnFaVXVoeTNIZ0ZKRldQMkdXYjk4U05rMDBSS1NaRWZ1MUdGWXkxVVpHOUtoU2tncmlpS3dQWWl3ZzduLXBBa29YTEdUeTQ1RUlaZ2l3N0pMd2lrUjN5d28?oc=5
+【概要】Microsoft Intuneを用いて、通常のPCだけでなくWindows Serverもクラウドから一括管理できる機能が提供開始されました。サーバーとクライアントの管理基盤を統合することで、IT管理者の運用負荷軽減が期待されます。
+【なぜ今話題か】クラウド移行が進む中で、オンプレミス寄りのサーバー群もモダンな管理手法へ統合するニーズが高まっているため。
+【元記事URL】https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643
 
 前提知識がなくてもわかるように背景を整理したうえで、今後注目すべきポイントを3点挙げてください。</textarea>
 
         <div class="card-footer">
-          <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxNcFJwZktNakRzNDBTS3c4OVU2dVhfQ1VFaGNURGh0RHFnOThKdXFKVnFaVXVoeTNIZ0ZKRldQMkdXYjk4U05rMDBSS1NaRWZ1MUdGWXkxVVpHOUtoU2tncmlpS3dQWWl3ZzduLXBBa29YTEdUeTQ1RUlaZ2l3N0pMd2lrUjN5d28?oc=5" target="_blank" rel="noopener">元記事 ↗</a>
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" target="_blank" rel="noopener">元記事 ↗</a>
           <div class="footer-actions">
             <button class="ai-btn" onclick="openDeepDive('ai-prompt-qr-1')">🤖 深掘り</button>
-            <button class="memo-btn" data-title="Microsoft To Doが2027年6月30日に終了へ" data-url="https://news.google.com/rss/articles/CBMihwFBVV95cUxNcFJwZktNakRzNDBTS3c4OVU2dVhfQ1VFaGNURGh0RHFnOThKdXFKVnFaVXVoeTNIZ0ZKRldQMkdXYjk4U05rMDBSS1NaRWZ1MUdGWXkxVVpHOUtoU2tncmlpS3dQWWl3ZzduLXBBa29YTEdUeTQ1RUlaZ2l3N0pMd2lrUjN5d28?oc=5" onclick="toggleMemo(this)">🔖 メモ</button>
+            <button class="memo-btn" data-title="Windows ServersもIntuneで一元管理へ" data-url="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" onclick="toggleMemo(this)">🔖 メモ</button>
           </div>
         </div>
       </article>
@@ -586,17 +586,17 @@
           <div class="card-meta">
             <span class="badge badge-ms">MS小ネタ</span>
           </div>
-          <h3 class="radar-title">Exchange Onlineの「Direct Send」拒否機能が一般提供開始</h3>
-          <p class="radar-body">複合機や社内システムから認証なしでメールを直接送信する「Direct Send」の制御が強化され、通常機能（GA）としてリリースされました。セキュリティ上のリスクが高い旧式の送信方法をブロックし、不正中継やスパム発信源となるのを防ぐための重要な管理機能です。</p>
-          <div class="radar-why"><strong>なぜ今話題？：</strong>なりすましメール対策やセキュリティ基準の引き上げに伴い、テナント全体のメール送信経路の厳格化が急務となっているから。</div>
+          <h3 class="radar-title">Exchange Onlineで「Reject Direct Send」が正式提供</h3>
+          <p class="radar-body">Exchange Onlineにおいて、認証なしで直接メールを送信する「Direct Send」を拒否する機能が一般提供（GA）開始されました。なりすましメール対策やセキュリティの厳格化に直結する重要なお知らせです。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>メールセキュリティの基準が年々厳しくなる中、組織全体の不正メール対策を標準機能で強化するため。</div>
         </div>
 
         <textarea hidden id="ai-prompt-qr-2">以下のトピックについて、もう少し詳しく教えてください。
 
-【タイトル】Exchange Onlineの「Direct Send」拒否機能が一般提供開始
+【タイトル】Exchange Onlineで「Reject Direct Send」が正式提供
 【カテゴリ】MS小ネタ
-【概要】複合機や社内システムから認証なしでメールを直接送信する「Direct Send」の制御が強化され、通常機能（GA）としてリリースされました。セキュリティ上のリスクが高い旧式の送信方法をブロックし、不正中継やスパム発信源となるのを防ぐための重要な管理機能です。
-【なぜ今話題か】なりすましメール対策やセキュリティ基準の引き上げに伴い、テナント全体のメール送信経路の厳格化が急務となっているから。
+【概要】Exchange Onlineにおいて、認証なしで直接メールを送信する「Direct Send」を拒否する機能が一般提供（GA）開始されました。なりすましメール対策やセキュリティの厳格化に直結する重要なお知らせです。
+【なぜ今話題か】メールセキュリティの基準が年々厳しくなる中、組織全体の不正メール対策を標準機能で強化するため。
 【元記事URL】https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787
 
 前提知識がなくてもわかるように背景を整理したうえで、今後注目すべきポイントを3点挙げてください。</textarea>
@@ -605,7 +605,7 @@
           <a href="https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787" target="_blank" rel="noopener">元記事 ↗</a>
           <div class="footer-actions">
             <button class="ai-btn" onclick="openDeepDive('ai-prompt-qr-2')">🤖 深掘り</button>
-            <button class="memo-btn" data-title="Exchange Onlineの「Direct Send」拒否機能が一般提供開始" data-url="https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787" onclick="toggleMemo(this)">🔖 メモ</button>
+            <button class="memo-btn" data-title="Exchange Onlineで「Reject Direct Send」が正式提供" data-url="https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787" onclick="toggleMemo(this)">🔖 メモ</button>
           </div>
         </div>
       </article>
@@ -615,8 +615,8 @@
 
     <div class="section-label">Cross Analysis — 編集長コラム</div>
     <section class="column-card">
-      <h2 class="article-title">クラウド基盤のセキュリティ強化とAI進化の表裏一体</h2>
-      <p style="margin:0;">本日はEntra IDの脆弱性やExchangeの送信制御といった「インフラの堅牢化・安全対策」に関するニュースと、Copilotの高度化といった「AIによる業務変革」のニュースが並びました。AIやクラウドの利便性がどれほど急速に進もうとも、その足元を支えるアイデンティティや認証の基盤が揺らいでいれば、企業全体が深刻なリスクに晒されます。エンジニアや管理者は、新機能の提案や導入を進めると同時に、常に最新のセキュリティパッチやアクセス権限の監査を怠らない二刀流の視点が求められています。</p>
+      <h2 class="article-title">クラウド基盤の安全神話とAI時代の運用シフト</h2>
+      <p style="margin:0;">本日はEntra IDの脆弱性発覚や、WindowsおよびCopilotを通じた「仕事のOS」への構造変化に関するニュースが注目を集めました。クラウドやAIの進化は業務効率を爆発的に高める一方で、管理者の目の届かないところで発生するリスクや、設定の複雑化という裏腹の課題をもたらしています。単に新機能を導入するだけでなく、アクセス権の厳格な監査や、AIエージェントの挙動をコントロールするガバナンス設計こそが、これからのITエンジニアに求められる最重要スキルと言えます。</p>
     </section>
   </main>
 
@@ -689,7 +689,7 @@
     }
 
     function copyMemos() {
-      const lines = ["**📌 気になったトピック (2026/11/24 (Tue))**"];
+      const lines = ["**📌 気になったトピック (2026/11/25 (Wed))**"];
       for (const [title, url] of savedMemos.entries()) {
         lines.push(`- ${title}\n  ${url}`);
       }
