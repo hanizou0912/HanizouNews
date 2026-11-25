@@ -347,7 +347,7 @@
     <div class="header-inner">
       <div class="brand">
         <span class="brand-title">DAILY SIGNAL — MS WORK EDITION</span>
-        <span class="brand-sub">2026/11/25 (Wed) 発行</span>
+        <span class="brand-sub">2026/11/26 (Thu) 発行</span>
       </div>
       <div class="nav-group">
         <a class="tab-link active" href="./work.html">💼 MS仕事用</a>
@@ -366,23 +366,23 @@
       <div class="card-meta">
         <span class="badge badge-ms">Microsoft 基盤・セキュリティ</span>
         
-        <span class="tag">#Entra ID</span>
+        <span class="tag">#Intune</span>
         
-        <span class="tag">#脆弱性</span>
+        <span class="tag">#BYOD</span>
         
-        <span class="tag">#管理者保護</span>
+        <span class="tag">#iOS/iPadOS</span>
         
       </div>
-      <h2 class="article-title">Entraの欠陥を109日間見抜けず、管理者のメールアドレスが流出：セキュリティ対策の盲点</h2>
+      <h2 class="article-title">IntuneのiOS/iPadOS向けBYODにおけるWebベースデバイス登録の推奨</h2>
 
       <div class="block">
         <div class="block-title">📖 これまでのあらすじ・前提</div>
-        <p>Microsoft Entra IDにおいて、管理者のメールアドレスやテナント情報が不正に取得される脆弱性が発覚した。問題の発覚までに109日間の遅れが生じたことが報じられ、クラウドアイデンティティ基盤の監視体制に改めて注目が集まっている。攻撃者は細工された手法を用いてテナントの内部情報を狙っており、早期検知の難しさが浮き彫りとなった。マイクロソフトはすでに修正パッチを適用しているが、管理者による迅速な確認と設定見直しが急務となっている。</p>
+        <p>企業のモバイル活用が進む中、個人所有端末（BYOD）を安全に業務利用するためのデバイス管理（MDM）の重要性が高まっています。従来は専用アプリの導入やプロファイル構成が必要でしたが、ユーザーの手間やプライバシー懸念が課題となっていました。Microsoft Intuneでは、こうした運用上のハードルを下げるための新しいアプローチとして機能拡充が進められています。</p>
       </div>
 
       <div class="block">
         <div class="block-title">🔍 何が起きたか・構造の解説</div>
-        <p>今回の問題の背景には、Entra Connect Healthなどの監視・連携ツールにおけるアクセス制御や検証プロセスの不備があったと推測される。攻撃者はこの隙を突いて内部情報への不正アクセスを試み、長期にわたって検知されずに機微情報を窃取した。クラウドサービスは利便性が高い一方で、全体像の把握が難しく、ログ監視の粒度が低いと異常兆候を見逃すリスクが常に伴う。企業側はデフォルトの設定だけに頼らず、API呼び出しやテナント間のアクセス権を厳格に監査する体制が必要である。</p>
+        <p>今回注目されているWebベースデバイス登録は、専用のエージェントアプリを強制することなく、ブラウザ経由でスムーズな登録とポリシー適用を行える仕組みです。管理者は複雑な手順をユーザーに案内する必要が減り、エンドユーザーは自身のプライバシーを守りながら組織のセキュリティ要件を満たせます。特にiOS/iPadOS環境において、管理負荷の軽減とセキュリティの担保を両立させるための実用的な手法となっています。</p>
       </div>
 
       <div class="block">
@@ -391,17 +391,17 @@
           
           <div class="flow-step">
             <span class="flow-num">STEP 1</span>
-            管理ツールやAPIのアクセス制御におけるわずかな不備を突かれ、不正アクセスが発生
+            ブラウザベースでの直感的な登録フローによりエンドユーザーの導入障壁が低下
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 2</span>
-            異常が長期間検知されず、管理者のメールアドレスなどの重要データが外部へ流出
+            管理者は専用アプリの配布や個別サポートの手間を大幅に削減
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 3</span>
-            ベンダーによる修正と同時に、テナント管理者は監査ログの常時監視とアクセス権の棚卸しを強化する事態に
+            セキュリティポリシーを維持しながらBYODの展開速度と適用率が向上
           </div>
           
         </div>
@@ -410,35 +410,35 @@
       
       <div class="glossary">
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-1-1')">📘 Microsoft Entra ID</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-1')">📘 BYOD</button>
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-1-2')">📘 テナント</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-2')">📘 Intune</button>
         
       </div>
       
       <div id="g-1-1" class="glossary-box">
-        <strong>Microsoft Entra ID：</strong>クラウド上のユーザー認証やアクセス権限を一元管理する、Microsoft 365の中核となるID管理基盤。
+        <strong>BYOD：</strong>Bring Your Own Deviceの略。従業員が私物のスマートフォンやPCを業務に利用すること。
       </div>
       
       <div id="g-1-2" class="glossary-box">
-        <strong>テナント：</strong>クラウドサービス上で企業や組織ごとに独立して割り当てられた、専用の利用環境およびデータ領域のこと。
+        <strong>Intune：</strong>マイクロソフトが提供するクラウドベースのエンドポイント管理（MDM/MAM）サービス。
       </div>
       
       
 
       <div class="contrarian">
         <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
-        <p>「クラウドだから安全」という過信は禁物であり、Microsoft側の修正だけに頼る運用は危険である。オンプレミスからクラウドへの移行期こそ、管理者の権限昇格やAPIの挙動に対するゼロトラストの原則に基づいた監視設計が不可欠である。</p>
+        <p>手軽に導入できる一方で、ブラウザベースの登録はユーザーの操作ミスやフィッシング誘導の余地を生むリスクがあります。事前の条件付きアクセス（Conditional Access）の厳格な設定と組み合わせなければ、かえってセキュリティホールになり得る点に注意が必要です。</p>
       </div>
 
       <textarea hidden id="ai-prompt-dd-1">以下のニュースについて深掘りして壁打ちしたいです。
 
-【タイトル】Entraの欠陥を109日間見抜けず、管理者のメールアドレスが流出：セキュリティ対策の盲点
+【タイトル】IntuneのiOS/iPadOS向けBYODにおけるWebベースデバイス登録の推奨
 【カテゴリ】Microsoft 基盤・セキュリティ
-【前提・あらすじ】Microsoft Entra IDにおいて、管理者のメールアドレスやテナント情報が不正に取得される脆弱性が発覚した。問題の発覚までに109日間の遅れが生じたことが報じられ、クラウドアイデンティティ基盤の監視体制に改めて注目が集まっている。攻撃者は細工された手法を用いてテナントの内部情報を狙っており、早期検知の難しさが浮き彫りとなった。マイクロソフトはすでに修正パッチを適用しているが、管理者による迅速な確認と設定見直しが急務となっている。
-【構造・要点】今回の問題の背景には、Entra Connect Healthなどの監視・連携ツールにおけるアクセス制御や検証プロセスの不備があったと推測される。攻撃者はこの隙を突いて内部情報への不正アクセスを試み、長期にわたって検知されずに機微情報を窃取した。クラウドサービスは利便性が高い一方で、全体像の把握が難しく、ログ監視の粒度が低いと異常兆候を見逃すリスクが常に伴う。企業側はデフォルトの設定だけに頼らず、API呼び出しやテナント間のアクセス権を厳格に監査する体制が必要である。
-【注意点・逆張り視点】「クラウドだから安全」という過信は禁物であり、Microsoft側の修正だけに頼る運用は危険である。オンプレミスからクラウドへの移行期こそ、管理者の権限昇格やAPIの挙動に対するゼロトラストの原則に基づいた監視設計が不可欠である。
-【元記事URL】https://news.google.com/rss/articles/CBMiU0FVX3lxTE5MVFdIdXE3eFFUNTQ2SmNpNVl2TlVpamxnbGJveWJuSjRtLTlrRUpTWThfY3FPRlpVQllTODlGOHAzd1B4MWdmNUg0VVgyVThiZUVB?oc=5
+【前提・あらすじ】企業のモバイル活用が進む中、個人所有端末（BYOD）を安全に業務利用するためのデバイス管理（MDM）の重要性が高まっています。従来は専用アプリの導入やプロファイル構成が必要でしたが、ユーザーの手間やプライバシー懸念が課題となっていました。Microsoft Intuneでは、こうした運用上のハードルを下げるための新しいアプローチとして機能拡充が進められています。
+【構造・要点】今回注目されているWebベースデバイス登録は、専用のエージェントアプリを強制することなく、ブラウザ経由でスムーズな登録とポリシー適用を行える仕組みです。管理者は複雑な手順をユーザーに案内する必要が減り、エンドユーザーは自身のプライバシーを守りながら組織のセキュリティ要件を満たせます。特にiOS/iPadOS環境において、管理負荷の軽減とセキュリティの担保を両立させるための実用的な手法となっています。
+【注意点・逆張り視点】手軽に導入できる一方で、ブラウザベースの登録はユーザーの操作ミスやフィッシング誘導の余地を生むリスクがあります。事前の条件付きアクセス（Conditional Access）の厳格な設定と組み合わせなければ、かえってセキュリティホールになり得る点に注意が必要です。
+【元記事URL】https://techcommunity.microsoft.com/t5/intune-customer-success/use-web-based-device-enrollment-for-byod-enrollment-on-ios/ba-p/4576027
 
 上記を踏まえて、以下の観点でさらに踏み込んで解説してください。
 1. エンタープライズ環境（Microsoft 365 / Azure / Intune / Entra ID等）の実務・設計への具体的な影響
@@ -446,10 +446,10 @@
 3. 次に私が深掘り・確認すべき論点（3つ）</textarea>
 
       <div class="card-footer">
-        <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5MVFdIdXE3eFFUNTQ2SmNpNVl2TlVpamxnbGJveWJuSjRtLTlrRUpTWThfY3FPRlpVQllTODlGOHAzd1B4MWdmNUg0VVgyVThiZUVB?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/use-web-based-device-enrollment-for-byod-enrollment-on-ios/ba-p/4576027" target="_blank" rel="noopener">元記事を読む ↗</a>
         <div class="footer-actions">
           <button class="ai-btn" onclick="openDeepDive('ai-prompt-dd-1')">🤖 AIで深掘り</button>
-          <button class="memo-btn" data-title="Entraの欠陥を109日間見抜けず、管理者のメールアドレスが流出：セキュリティ対策の盲点" data-url="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5MVFdIdXE3eFFUNTQ2SmNpNVl2TlVpamxnbGJveWJuSjRtLTlrRUpTWThfY3FPRlpVQllTODlGOHAzd1B4MWdmNUg0VVgyVThiZUVB?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
+          <button class="memo-btn" data-title="IntuneのiOS/iPadOS向けBYODにおけるWebベースデバイス登録の推奨" data-url="https://techcommunity.microsoft.com/t5/intune-customer-success/use-web-based-device-enrollment-for-byod-enrollment-on-ios/ba-p/4576027" onclick="toggleMemo(this)">🔖 メモに追加</button>
         </div>
       </div>
     </article>
@@ -461,21 +461,21 @@
         
         <span class="tag">#Copilot</span>
         
-        <span class="tag">#Windows</span>
+        <span class="tag">#Ignite</span>
         
-        <span class="tag">#OSの未来</span>
+        <span class="tag">#AIエージェント</span>
         
       </div>
-      <h2 class="article-title">Windowsはもはや“ランチャー”になる？ Copilot新画面「Home」とローカルAI戦略が示すOSの未来</h2>
+      <h2 class="article-title">Microsoft Igniteで発表された進化するCopilotと仕事向けインテリジェンス</h2>
 
       <div class="block">
         <div class="block-title">📖 これまでのあらすじ・前提</div>
-        <p>MicrosoftはWindowsにおけるAI統合を急速に推し進めており、Copilotの新画面「Home」やローカルAIを活用した機能強化が次々と発表されている。これまでの「アプリを起動して作業するOS」から、AIがユーザーの意図を汲み取ってシームレスにタスクを仲介する「仕事のOS」へと役割が変貌しつつある。ビジネス現場においては、単なる検索補助を超えて、日常的な業務フローそのものをAIが駆動する未来像が現実味を帯びてきた。</p>
+        <p>マイクロソフトは年次カンファレンス「Microsoft Ignite」を通じ、Copilotを単なるチャットアシスタントから、自律的に業務を遂行する「AIエージェント」へと進化させる方針を打ち出しています。個人の生産性向上フェーズから、組織全体のワークフローに組み込む本格的なAI活用フェーズへと移行しつつあります。</p>
       </div>
 
       <div class="block">
         <div class="block-title">🔍 何が起きたか・構造の解説</div>
-        <p>今回のアップデートや戦略の根底にあるのは、OSのインターフェースレイヤーをAIが完全に包み込む構造への転換である。ユーザーは細かなアプリの切り替えや複雑なコマンド入力を行う必要がなくなり、Copilotがハブとなって必要な機能やデータへアクセス・処理を代行する。これにより、Windows自体はAIエージェントを起動・管理するための「ランチャー」としての性格を強めていく。企業ITの観点では、この新しいUI/UXがエンドユーザーの生産性を劇的に変える一方、ローカル環境でのデータ処理やプライバシー保護のガバナンスが新たな課題となる。</p>
+        <p>新機能群では、指示の繰り返しを不要にする「プロジェクト」機能や、いつものTeams・Outlook上でAIの作業結果に人間の承認を挟める仕組みなどが実装されています。これにより、AIが勝手に暴走して実務を進行するリスクを防ぎつつ、定型業務の自動化を安全かつ効率的にスケールさせることが可能です。エンタープライズ顧客の提案において、具体的な業務プロセス改善のキラーコンテンツとして訴求しやすい内容となっています。</p>
       </div>
 
       <div class="block">
@@ -484,17 +484,17 @@
           
           <div class="flow-step">
             <span class="flow-num">STEP 1</span>
-            Copilotの機能拡張と新画面「Home」の導入により、OSの操作パラダイムが変化
+            AIエージェントによる高度なタスク自動化とプロジェクト単位でのコンテキスト維持が可能に
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 2</span>
-            ユーザーは個別アプリの操作を意識せず、AIを介した自然言語でのタスク実行が主流に
+            TeamsやOutlookを介したHuman-in-the-loop（人間の確認・承認）で安全性を担保
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 3</span>
-            Windowsの存在価値が再定義され、企業はAI前提の端末管理とセキュリティ方針への適応を迫られる
+            企業におけるAI導入のハードルが下がり、本格的な業務プロセス変革が加速
           </div>
           
         </div>
@@ -503,35 +503,35 @@
       
       <div class="glossary">
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-2-1')">📘 Copilot</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-1')">📘 Human-in-the-loop</button>
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-2-2')">📘 ローカルAI</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-2')">📘 Copilot Studio</button>
         
       </div>
       
       <div id="g-2-1" class="glossary-box">
-        <strong>Copilot：</strong>Microsoftの各製品に統合された生成AIアシスタント。文書作成やデータ分析、業務の自動化をサポートする。
+        <strong>Human-in-the-loop：</strong>AIの処理プロセスの途中に人間による確認や承認を挟むことで、誤作動やリスクを防ぐ仕組み。
       </div>
       
       <div id="g-2-2" class="glossary-box">
-        <strong>ローカルAI：</strong>クラウド上のサーバーではなく、手元のデバイス（PCのNPU等）上で直接実行されるAIモデルのこと。
+        <strong>Copilot Studio：</strong>独自のAIエージェントやカスタムスキルをノーコード・ローコードで構築・拡張できる開発環境。
       </div>
       
       
 
       <div class="contrarian">
         <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
-        <p>AIによる自動化の利便性ばかりに目を奪われがちだが、エンドユーザーが意図しないドラフトの自動生成や予期せぬ挙動に悩まされる現場も少なくない。管理者は「AIが勝手に動きすぎるリスク」をコントロールするポリシー設定をあらかじめ用意しておく必要がある。</p>
+        <p>機能が高度化する反面、ユーザー企業側で「どのデータをAIに参照させてよいか」のガバナンスが曖昧なままだと、機密情報の意図しない流出リスクが高まります。技術の導入だけでなく、事前のアクセス権整理（SharePointやEntra IDの権限管理）が不可欠です。</p>
       </div>
 
       <textarea hidden id="ai-prompt-dd-2">以下のニュースについて深掘りして壁打ちしたいです。
 
-【タイトル】Windowsはもはや“ランチャー”になる？ Copilot新画面「Home」とローカルAI戦略が示すOSの未来
+【タイトル】Microsoft Igniteで発表された進化するCopilotと仕事向けインテリジェンス
 【カテゴリ】Microsoft AI・クラウド・モダンワーク
-【前提・あらすじ】MicrosoftはWindowsにおけるAI統合を急速に推し進めており、Copilotの新画面「Home」やローカルAIを活用した機能強化が次々と発表されている。これまでの「アプリを起動して作業するOS」から、AIがユーザーの意図を汲み取ってシームレスにタスクを仲介する「仕事のOS」へと役割が変貌しつつある。ビジネス現場においては、単なる検索補助を超えて、日常的な業務フローそのものをAIが駆動する未来像が現実味を帯びてきた。
-【構造・要点】今回のアップデートや戦略の根底にあるのは、OSのインターフェースレイヤーをAIが完全に包み込む構造への転換である。ユーザーは細かなアプリの切り替えや複雑なコマンド入力を行う必要がなくなり、Copilotがハブとなって必要な機能やデータへアクセス・処理を代行する。これにより、Windows自体はAIエージェントを起動・管理するための「ランチャー」としての性格を強めていく。企業ITの観点では、この新しいUI/UXがエンドユーザーの生産性を劇的に変える一方、ローカル環境でのデータ処理やプライバシー保護のガバナンスが新たな課題となる。
-【注意点・逆張り視点】AIによる自動化の利便性ばかりに目を奪われがちだが、エンドユーザーが意図しないドラフトの自動生成や予期せぬ挙動に悩まされる現場も少なくない。管理者は「AIが勝手に動きすぎるリスク」をコントロールするポリシー設定をあらかじめ用意しておく必要がある。
-【元記事URL】https://news.google.com/rss/articles/CBMiaEFVX3lxTE5fUXRnbDFCaG04dy1taXFacVJ3Y1NfWnhsN1A2dnJ5c0RaR2hGLWFWRWI0VDFrVTY5V0ozdXZ1SXlJN3RPVnUxXzVYakhlMkRsN0hqV0ZVMjl5NDJRMS1yellRWHFyb09T0gFoQVVfeXFMTl9RdGdsMUJobTh3LW1pcVpxUndjU19aeGw3UDZ2cnlzRFpHaEYtYVZFYjRUMWtVNjlXSjN1dnVJeUk3dE9WdTFfNVhqSGUyRGw3SGpXRlUyOXk0MlExLXJ6WVFYcXJvT1M?oc=5
+【前提・あらすじ】マイクロソフトは年次カンファレンス「Microsoft Ignite」を通じ、Copilotを単なるチャットアシスタントから、自律的に業務を遂行する「AIエージェント」へと進化させる方針を打ち出しています。個人の生産性向上フェーズから、組織全体のワークフローに組み込む本格的なAI活用フェーズへと移行しつつあります。
+【構造・要点】新機能群では、指示の繰り返しを不要にする「プロジェクト」機能や、いつものTeams・Outlook上でAIの作業結果に人間の承認を挟める仕組みなどが実装されています。これにより、AIが勝手に暴走して実務を進行するリスクを防ぎつつ、定型業務の自動化を安全かつ効率的にスケールさせることが可能です。エンタープライズ顧客の提案において、具体的な業務プロセス改善のキラーコンテンツとして訴求しやすい内容となっています。
+【注意点・逆張り視点】機能が高度化する反面、ユーザー企業側で「どのデータをAIに参照させてよいか」のガバナンスが曖昧なままだと、機密情報の意図しない流出リスクが高まります。技術の導入だけでなく、事前のアクセス権整理（SharePointやEntra IDの権限管理）が不可欠です。
+【元記事URL】https://news.google.com/rss/articles/CBMi2gFBVV95cUxNZUtFekh1UjNCUjhyWm9vLTNLRlk2SlR0eU84clJldU83Yk52Z1ZRWUdmMDVhQ29saVA5d2N0dXVBczRPODdWaG12dXFfXzh2TnJiU3Jqb2dVWEo5MDlsd2l1dDRnZUg5T2FyanhTNlZhb0ZNQVhncUdvckdjRm5rYVdKMVlEWjlpeW9RNm9taHNYMUZxRHVGRURJV0xXaktIYzFtcWk1aGlvc1NNM1VEdnZ1M0YxdFRDX0U5b3FVNVk1VHZqSlo0YllCcWptZVhYME5rQ0xXVk9XZw?oc=5
 
 上記を踏まえて、以下の観点でさらに踏み込んで解説してください。
 1. エンタープライズ環境（Microsoft 365 / Azure / Intune / Entra ID等）の実務・設計への具体的な影響
@@ -539,10 +539,10 @@
 3. 次に私が深掘り・確認すべき論点（3つ）</textarea>
 
       <div class="card-footer">
-        <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5fUXRnbDFCaG04dy1taXFacVJ3Y1NfWnhsN1A2dnJ5c0RaR2hGLWFWRWI0VDFrVTY5V0ozdXZ1SXlJN3RPVnUxXzVYakhlMkRsN0hqV0ZVMjl5NDJRMS1yellRWHFyb09T0gFoQVVfeXFMTl9RdGdsMUJobTh3LW1pcVpxUndjU19aeGw3UDZ2cnlzRFpHaEYtYVZFYjRUMWtVNjlXSjN1dnVJeUk3dE9WdTFfNVhqSGUyRGw3SGpXRlUyOXk0MlExLXJ6WVFYcXJvT1M?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <a href="https://news.google.com/rss/articles/CBMi2gFBVV95cUxNZUtFekh1UjNCUjhyWm9vLTNLRlk2SlR0eU84clJldU83Yk52Z1ZRWUdmMDVhQ29saVA5d2N0dXVBczRPODdWaG12dXFfXzh2TnJiU3Jqb2dVWEo5MDlsd2l1dDRnZUg5T2FyanhTNlZhb0ZNQVhncUdvckdjRm5rYVdKMVlEWjlpeW9RNm9taHNYMUZxRHVGRURJV0xXaktIYzFtcWk1aGlvc1NNM1VEdnZ1M0YxdFRDX0U5b3FVNVk1VHZqSlo0YllCcWptZVhYME5rQ0xXVk9XZw?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
         <div class="footer-actions">
           <button class="ai-btn" onclick="openDeepDive('ai-prompt-dd-2')">🤖 AIで深掘り</button>
-          <button class="memo-btn" data-title="Windowsはもはや“ランチャー”になる？ Copilot新画面「Home」とローカルAI戦略が示すOSの未来" data-url="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5fUXRnbDFCaG04dy1taXFacVJ3Y1NfWnhsN1A2dnJ5c0RaR2hGLWFWRWI0VDFrVTY5V0ozdXZ1SXlJN3RPVnUxXzVYakhlMkRsN0hqV0ZVMjl5NDJRMS1yellRWHFyb09T0gFoQVVfeXFMTl9RdGdsMUJobTh3LW1pcVpxUndjU19aeGw3UDZ2cnlzRFpHaEYtYVZFYjRUMWtVNjlXSjN1dnVJeUk3dE9WdTFfNVhqSGUyRGw3SGpXRlUyOXk0MlExLXJ6WVFYcXJvT1M?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
+          <button class="memo-btn" data-title="Microsoft Igniteで発表された進化するCopilotと仕事向けインテリジェンス" data-url="https://news.google.com/rss/articles/CBMi2gFBVV95cUxNZUtFekh1UjNCUjhyWm9vLTNLRlk2SlR0eU84clJldU83Yk52Z1ZRWUdmMDVhQ29saVA5d2N0dXVBczRPODdWaG12dXFfXzh2TnJiU3Jqb2dVWEo5MDlsd2l1dDRnZUg5T2FyanhTNlZhb0ZNQVhncUdvckdjRm5rYVdKMVlEWjlpeW9RNm9taHNYMUZxRHVGRURJV0xXaktIYzFtcWk1aGlvc1NNM1VEdnZ1M0YxdFRDX0U5b3FVNVk1VHZqSlo0YllCcWptZVhYME5rQ0xXVk9XZw?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
         </div>
       </div>
     </article>
@@ -557,26 +557,26 @@
           <div class="card-meta">
             <span class="badge badge-ms">MS小ネタ</span>
           </div>
-          <h3 class="radar-title">Windows ServersもIntuneで一元管理へ</h3>
-          <p class="radar-body">Microsoft Intuneを用いて、通常のPCだけでなくWindows Serverもクラウドから一括管理できる機能が提供開始されました。サーバーとクライアントの管理基盤を統合することで、IT管理者の運用負荷軽減が期待されます。</p>
-          <div class="radar-why"><strong>なぜ今話題？：</strong>クラウド移行が進む中で、オンプレミス寄りのサーバー群もモダンな管理手法へ統合するニーズが高まっているため。</div>
+          <h3 class="radar-title">Microsoft Entra Connect Healthの脆弱性と修正</h3>
+          <p class="radar-body">オンプレミスとクラウドを繋ぐ監視ツール「Entra Connect Health」に、管理者メールやテナント情報が不正取得される脆弱性が発覚しました。マイクロソフト社により既に修正パッチが提供されており、管理者は速やかなアップデート適用が求められます。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>ハイブリッド環境の要となる重要コンポーネントであり、悪用された場合のテナント全体への影響度が極めて高いため。</div>
         </div>
 
         <textarea hidden id="ai-prompt-qr-1">以下のトピックについて、もう少し詳しく教えてください。
 
-【タイトル】Windows ServersもIntuneで一元管理へ
+【タイトル】Microsoft Entra Connect Healthの脆弱性と修正
 【カテゴリ】MS小ネタ
-【概要】Microsoft Intuneを用いて、通常のPCだけでなくWindows Serverもクラウドから一括管理できる機能が提供開始されました。サーバーとクライアントの管理基盤を統合することで、IT管理者の運用負荷軽減が期待されます。
-【なぜ今話題か】クラウド移行が進む中で、オンプレミス寄りのサーバー群もモダンな管理手法へ統合するニーズが高まっているため。
-【元記事URL】https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643
+【概要】オンプレミスとクラウドを繋ぐ監視ツール「Entra Connect Health」に、管理者メールやテナント情報が不正取得される脆弱性が発覚しました。マイクロソフト社により既に修正パッチが提供されており、管理者は速やかなアップデート適用が求められます。
+【なぜ今話題か】ハイブリッド環境の要となる重要コンポーネントであり、悪用された場合のテナント全体への影響度が極めて高いため。
+【元記事URL】https://news.google.com/rss/articles/CBMipwFBVV95cUxObjdzUUV0T29pa1A2MlpXN0ZMTVpQSDZ3UVh0LUVRTjZTWjV6aUNXRWR4cWpMUFIyT1JBSlJWNDVLckxCcnN3amlRdGhnWjE4WXhGRG05T0ZtcFF4anNtZUo5OEVtSElRblJWMnQtY3lzd25rQ2xFTnVDV3RtVXpabjVOQzFGekFHMXlUakxZMUpDOVE3ZktsdkxmTzFzZ0d6TE1mMWpBOA?oc=5
 
 前提知識がなくてもわかるように背景を整理したうえで、今後注目すべきポイントを3点挙げてください。</textarea>
 
         <div class="card-footer">
-          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" target="_blank" rel="noopener">元記事 ↗</a>
+          <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxObjdzUUV0T29pa1A2MlpXN0ZMTVpQSDZ3UVh0LUVRTjZTWjV6aUNXRWR4cWpMUFIyT1JBSlJWNDVLckxCcnN3amlRdGhnWjE4WXhGRG05T0ZtcFF4anNtZUo5OEVtSElRblJWMnQtY3lzd25rQ2xFTnVDV3RtVXpabjVOQzFGekFHMXlUakxZMUpDOVE3ZktsdkxmTzFzZ0d6TE1mMWpBOA?oc=5" target="_blank" rel="noopener">元記事 ↗</a>
           <div class="footer-actions">
             <button class="ai-btn" onclick="openDeepDive('ai-prompt-qr-1')">🤖 深掘り</button>
-            <button class="memo-btn" data-title="Windows ServersもIntuneで一元管理へ" data-url="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" onclick="toggleMemo(this)">🔖 メモ</button>
+            <button class="memo-btn" data-title="Microsoft Entra Connect Healthの脆弱性と修正" data-url="https://news.google.com/rss/articles/CBMipwFBVV95cUxObjdzUUV0T29pa1A2MlpXN0ZMTVpQSDZ3UVh0LUVRTjZTWjV6aUNXRWR4cWpMUFIyT1JBSlJWNDVLckxCcnN3amlRdGhnWjE4WXhGRG05T0ZtcFF4anNtZUo5OEVtSElRblJWMnQtY3lzd25rQ2xFTnVDV3RtVXpabjVOQzFGekFHMXlUakxZMUpDOVE3ZktsdkxmTzFzZ0d6TE1mMWpBOA?oc=5" onclick="toggleMemo(this)">🔖 メモ</button>
           </div>
         </div>
       </article>
@@ -586,17 +586,17 @@
           <div class="card-meta">
             <span class="badge badge-ms">MS小ネタ</span>
           </div>
-          <h3 class="radar-title">Exchange Onlineで「Reject Direct Send」が正式提供</h3>
-          <p class="radar-body">Exchange Onlineにおいて、認証なしで直接メールを送信する「Direct Send」を拒否する機能が一般提供（GA）開始されました。なりすましメール対策やセキュリティの厳格化に直結する重要なお知らせです。</p>
-          <div class="radar-why"><strong>なぜ今話題？：</strong>メールセキュリティの基準が年々厳しくなる中、組織全体の不正メール対策を標準機能で強化するため。</div>
+          <h3 class="radar-title">Exchange Onlineの「Reject Direct Send」が一般提供（GA）開始</h3>
+          <p class="radar-body">Exchange Onlineにおいて、内部アプリケーションやデバイスから直接メールを送信する「ダイレクトセンド」を拒否する機能が正式に一般提供されました。セキュリティ対策の不十分なデバイスからのスパム発信やなりすましを防ぐ効果があります。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>メールセキュリティの強化が進む中、古い複合機や社内システムからの送信方式を見直す絶好のタイミングだからです。</div>
         </div>
 
         <textarea hidden id="ai-prompt-qr-2">以下のトピックについて、もう少し詳しく教えてください。
 
-【タイトル】Exchange Onlineで「Reject Direct Send」が正式提供
+【タイトル】Exchange Onlineの「Reject Direct Send」が一般提供（GA）開始
 【カテゴリ】MS小ネタ
-【概要】Exchange Onlineにおいて、認証なしで直接メールを送信する「Direct Send」を拒否する機能が一般提供（GA）開始されました。なりすましメール対策やセキュリティの厳格化に直結する重要なお知らせです。
-【なぜ今話題か】メールセキュリティの基準が年々厳しくなる中、組織全体の不正メール対策を標準機能で強化するため。
+【概要】Exchange Onlineにおいて、内部アプリケーションやデバイスから直接メールを送信する「ダイレクトセンド」を拒否する機能が正式に一般提供されました。セキュリティ対策の不十分なデバイスからのスパム発信やなりすましを防ぐ効果があります。
+【なぜ今話題か】メールセキュリティの強化が進む中、古い複合機や社内システムからの送信方式を見直す絶好のタイミングだからです。
 【元記事URL】https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787
 
 前提知識がなくてもわかるように背景を整理したうえで、今後注目すべきポイントを3点挙げてください。</textarea>
@@ -605,7 +605,7 @@
           <a href="https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787" target="_blank" rel="noopener">元記事 ↗</a>
           <div class="footer-actions">
             <button class="ai-btn" onclick="openDeepDive('ai-prompt-qr-2')">🤖 深掘り</button>
-            <button class="memo-btn" data-title="Exchange Onlineで「Reject Direct Send」が正式提供" data-url="https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787" onclick="toggleMemo(this)">🔖 メモ</button>
+            <button class="memo-btn" data-title="Exchange Onlineの「Reject Direct Send」が一般提供（GA）開始" data-url="https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787" onclick="toggleMemo(this)">🔖 メモ</button>
           </div>
         </div>
       </article>
@@ -615,8 +615,8 @@
 
     <div class="section-label">Cross Analysis — 編集長コラム</div>
     <section class="column-card">
-      <h2 class="article-title">クラウド基盤の安全神話とAI時代の運用シフト</h2>
-      <p style="margin:0;">本日はEntra IDの脆弱性発覚や、WindowsおよびCopilotを通じた「仕事のOS」への構造変化に関するニュースが注目を集めました。クラウドやAIの進化は業務効率を爆発的に高める一方で、管理者の目の届かないところで発生するリスクや、設定の複雑化という裏腹の課題をもたらしています。単に新機能を導入するだけでなく、アクセス権の厳格な監査や、AIエージェントの挙動をコントロールするガバナンス設計こそが、これからのITエンジニアに求められる最重要スキルと言えます。</p>
+      <h2 class="article-title">エージェント時代の到来と、管理者が直面する「守りと攻め」の両立</h2>
+      <p style="margin:0;">本日はIntuneによるモダンなデバイス管理やセキュリティベースラインの話題と、Igniteで発表されたCopilotのAIエージェント化という「守りと攻め」の両面で重要なニュースが揃いました。AIやクラウドの活用が進むほど、Entra Connect Healthのようなインフラの脆弱性対策や、Exchange等の通信経路の厳格化といった足回りのセキュリティ管理が成否を分けます。管理者に求められるのは、最新のAI提案ネタをキャッチアップしつつ、変化する脅威に対して堅牢なベースラインを維持し続けるバランス感覚と言えます。</p>
     </section>
   </main>
 
@@ -689,7 +689,7 @@
     }
 
     function copyMemos() {
-      const lines = ["**📌 気になったトピック (2026/11/25 (Wed))**"];
+      const lines = ["**📌 気になったトピック (2026/11/26 (Thu))**"];
       for (const [title, url] of savedMemos.entries()) {
         lines.push(`- ${title}\n  ${url}`);
       }
