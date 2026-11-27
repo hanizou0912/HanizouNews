@@ -347,7 +347,7 @@
     <div class="header-inner">
       <div class="brand">
         <span class="brand-title">DAILY SIGNAL — MS WORK EDITION</span>
-        <span class="brand-sub">2026/11/27 (Fri) 発行</span>
+        <span class="brand-sub">2026/11/28 (Sat) 発行</span>
       </div>
       <div class="nav-group">
         <a class="tab-link active" href="./work.html">💼 MS仕事用</a>
@@ -364,25 +364,25 @@
     
     <article class="card">
       <div class="card-meta">
-        <span class="badge badge-ms">Microsoft 基盤・セキュリティ</span>
+        <span class="badge badge-ms">Microsoft基盤・セキュリティ</span>
         
         <span class="tag">#Intune</span>
         
-        <span class="tag">#BYOD</span>
+        <span class="tag">#Windows Server</span>
         
-        <span class="tag">#iOS</span>
+        <span class="tag">#クラウド管理</span>
         
       </div>
-      <h2 class="article-title">IntuneのiOS向けWebベースデバイス登録：アプリ不要のBYOD管理手法</h2>
+      <h2 class="article-title">Microsoft IntuneによるWindows Serverのクラウド一元管理手法</h2>
 
       <div class="block">
         <div class="block-title">📖 これまでのあらすじ・前提</div>
-        <p>スマートフォンなどの私物端末を業務に利用するBYOD環境では、これまでは専用の管理アプリをインストールさせる方式が主流でした。しかし、ユーザーのプライバシー懸念や導入の手間が、円滑な展開の大きな障壁となっていました。企業側としても、個人端末への過度な干渉を避けつつ、セキュアに社内リソースへアクセスさせたいという課題がありました。</p>
+        <p>これまでクライアントPCの管理が中心だったMicrosoft Intuneにおいて、サーバーワークロードのクラウド移行ニーズが高まってきている。現場のIT管理者からは、PCと同等のポリシーやセキュリティ設定でサーバーも一元管理したいという要望が強く寄せられていた。特にワークステーション用途などで利用される一部のWindows Serverにおいて、管理手法の共通化が急務となっていた。</p>
       </div>
 
       <div class="block">
         <div class="block-title">🔍 何が起きたか・構造の解説</div>
-        <p>今回Microsoft Intuneに導入された「Webベースデバイス登録」は、専用アプリの導入を不要とし、ブラウザを介してMDMプロファイルの適用を行う仕組みです。これにより、iOS/iPadOS端末のセットアップ工程が極めてシンプルになり、エンドユーザー側の心理的・技術的ハードルが大幅に下がります。管理者はWebポータル経由で一元的にコンプライアンスポリシーを維持できるため、セキュリティを担保したままスムーズなBYOD運用が可能になります。</p>
+        <p>Microsoftは、Intuneを活用してWindows Serverを通常のPC端末と同様にクラウド上で直接管理する機能の提供を進めている。これにより、従来のグループポリシー（GPO）やオンプレミス前提のActive Directoryに依存していたサーバー管理の一部を、モダンなクラウド管理へ移行することが可能になる。パッチ適用やセキュリティベースラインの適用をクラウド側から一気通貫で行える点が最大の特徴である。</p>
       </div>
 
       <div class="block">
@@ -391,17 +391,17 @@
           
           <div class="flow-step">
             <span class="flow-num">STEP 1</span>
-            専用アプリのインストールと初期設定の複雑さがBYOD導入のボトルネックになっていた
+            IntuneによるWindows Serverの管理範囲が拡大する
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 2</span>
-            Webブラウザベースの登録プロセスを採用することで、ユーザーの導入負担を極限まで軽減した
+            PCとサーバーの管理基盤がクラウド上に一本化される
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 3</span>
-            管理者はセキュリティポリシーを維持しつつ、セキュアなモバイルワークプレイスを迅速に構築できる
+            オンプレミスADへの依存度が下がり運用工数が大幅に削減される
           </div>
           
         </div>
@@ -410,35 +410,35 @@
       
       <div class="glossary">
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-1-1')">📘 BYOD</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-1')">📘 Microsoft Intune</button>
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-1-2')">📘 MDM</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-1-2')">📘 ワークロード</button>
         
       </div>
       
       <div id="g-1-1" class="glossary-box">
-        <strong>BYOD：</strong>Bring Your Own Deviceの略。従業員が所有する私物のスマートフォンやPCを業務に活用すること。
+        <strong>Microsoft Intune：</strong>クラウドベースのエンドポイント管理（MDM/MAM）サービス。PCやモバイルに加えサーバーの管理にも対応範囲を拡大中。
       </div>
       
       <div id="g-1-2" class="glossary-box">
-        <strong>MDM：</strong>Mobile Device Managementの略。モバイル端末のセキュリティ設定や遠隔ロックなどを一元管理するシステム。
+        <strong>ワークロード：</strong>システムやサーバー上で実行される処理や業務アプリケーション、データの総称。
       </div>
       
       
 
       <div class="contrarian">
         <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
-        <p>専用アプリによる厳格なデバイス制御と比較して、ブラウザベースの登録はユーザーの利便性が向上する反面、ユーザー自身によるプロファイルの削除リスクやデバイス状態の把握における可視性の低下に注意が必要です。</p>
+        <p>サーバー固有の複雑な設定やレガシーなアプリケーションが稼働する環境では、クラウド管理への完全移行が予期せぬ不具合を招くリスクがある。段階的な適用検証と、万が一の際のロールバック手順の事前確認が不可欠である。</p>
       </div>
 
       <textarea hidden id="ai-prompt-dd-1">以下のニュースについて深掘りして壁打ちしたいです。
 
-【タイトル】IntuneのiOS向けWebベースデバイス登録：アプリ不要のBYOD管理手法
-【カテゴリ】Microsoft 基盤・セキュリティ
-【前提・あらすじ】スマートフォンなどの私物端末を業務に利用するBYOD環境では、これまでは専用の管理アプリをインストールさせる方式が主流でした。しかし、ユーザーのプライバシー懸念や導入の手間が、円滑な展開の大きな障壁となっていました。企業側としても、個人端末への過度な干渉を避けつつ、セキュアに社内リソースへアクセスさせたいという課題がありました。
-【構造・要点】今回Microsoft Intuneに導入された「Webベースデバイス登録」は、専用アプリの導入を不要とし、ブラウザを介してMDMプロファイルの適用を行う仕組みです。これにより、iOS/iPadOS端末のセットアップ工程が極めてシンプルになり、エンドユーザー側の心理的・技術的ハードルが大幅に下がります。管理者はWebポータル経由で一元的にコンプライアンスポリシーを維持できるため、セキュリティを担保したままスムーズなBYOD運用が可能になります。
-【注意点・逆張り視点】専用アプリによる厳格なデバイス制御と比較して、ブラウザベースの登録はユーザーの利便性が向上する反面、ユーザー自身によるプロファイルの削除リスクやデバイス状態の把握における可視性の低下に注意が必要です。
-【元記事URL】https://techcommunity.microsoft.com/t5/intune-customer-success/use-web-based-device-enrollment-for-byod-enrollment-on-ios/ba-p/4576027
+【タイトル】Microsoft IntuneによるWindows Serverのクラウド一元管理手法
+【カテゴリ】Microsoft基盤・セキュリティ
+【前提・あらすじ】これまでクライアントPCの管理が中心だったMicrosoft Intuneにおいて、サーバーワークロードのクラウド移行ニーズが高まってきている。現場のIT管理者からは、PCと同等のポリシーやセキュリティ設定でサーバーも一元管理したいという要望が強く寄せられていた。特にワークステーション用途などで利用される一部のWindows Serverにおいて、管理手法の共通化が急務となっていた。
+【構造・要点】Microsoftは、Intuneを活用してWindows Serverを通常のPC端末と同様にクラウド上で直接管理する機能の提供を進めている。これにより、従来のグループポリシー（GPO）やオンプレミス前提のActive Directoryに依存していたサーバー管理の一部を、モダンなクラウド管理へ移行することが可能になる。パッチ適用やセキュリティベースラインの適用をクラウド側から一気通貫で行える点が最大の特徴である。
+【注意点・逆張り視点】サーバー固有の複雑な設定やレガシーなアプリケーションが稼働する環境では、クラウド管理への完全移行が予期せぬ不具合を招くリスクがある。段階的な適用検証と、万が一の際のロールバック手順の事前確認が不可欠である。
+【元記事URL】https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643
 
 上記を踏まえて、以下の観点でさらに踏み込んで解説してください。
 1. エンタープライズ環境（Microsoft 365 / Azure / Intune / Entra ID等）の実務・設計への具体的な影響
@@ -446,10 +446,10 @@
 3. 次に私が深掘り・確認すべき論点（3つ）</textarea>
 
       <div class="card-footer">
-        <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/use-web-based-device-enrollment-for-byod-enrollment-on-ios/ba-p/4576027" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" target="_blank" rel="noopener">元記事を読む ↗</a>
         <div class="footer-actions">
           <button class="ai-btn" onclick="openDeepDive('ai-prompt-dd-1')">🤖 AIで深掘り</button>
-          <button class="memo-btn" data-title="IntuneのiOS向けWebベースデバイス登録：アプリ不要のBYOD管理手法" data-url="https://techcommunity.microsoft.com/t5/intune-customer-success/use-web-based-device-enrollment-for-byod-enrollment-on-ios/ba-p/4576027" onclick="toggleMemo(this)">🔖 メモに追加</button>
+          <button class="memo-btn" data-title="Microsoft IntuneによるWindows Serverのクラウド一元管理手法" data-url="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" onclick="toggleMemo(this)">🔖 メモに追加</button>
         </div>
       </div>
     </article>
@@ -461,21 +461,21 @@
         
         <span class="tag">#Copilot</span>
         
-        <span class="tag">#Edge</span>
+        <span class="tag">#Ignite 2026</span>
         
-        <span class="tag">#AIエージェント</span>
+        <span class="tag">#Workspaces</span>
         
       </div>
-      <h2 class="article-title">Microsoft Edgeに登場したAIエージェント：複数サイト横断自動化の衝撃</h2>
+      <h2 class="article-title">Microsoft Ignite 2026で発表された「Copilot」の次世代ワークスペース機能</h2>
 
       <div class="block">
         <div class="block-title">📖 これまでのあらすじ・前提</div>
-        <p>生成AIの活用は、単なるテキストの要約やチャット対話の域を脱し、ユーザーの代わりにブラウザ操作やタスクを遂行する「AIエージェント」のフェーズへと移行しつつあります。従来のブラウザ機能は、あくまでユーザーが手動で複数タブを行き来しながら情報を収集・入力することが前提でした。しかし、複雑な業務フローにおいては、この「人間による分断された作業」が生産性の限界を生んでいました。</p>
+        <p>Microsoftは年次カンファレンス「Ignite 2026」において、Copilotを単なるチャットアシスタントから「仕事の新しいOS」へと進化させる重大なアップデートを発表した。これまでのアプリ個別の利用や手動での切り替え作業が、ユーザーの業務効率を分断しているという課題があった。組織におけるAI活用の定着率をさらに高めるための抜本的な刷新が求められていた。</p>
       </div>
 
       <div class="block">
         <div class="block-title">🔍 何が起きたか・構造の解説</div>
-        <p>Microsoft Edgeに新たに実装されたAIエージェント機能は、複数のWebサイトやシステムにまたがる一連の作業を自動で遂行する能力を備えています。単一のページの読み込みや要約にとどまらず、ユーザーの指示に基づいて複数サイト間でのデータ突合や手続きのステップを連続して実行します。これにより、バックオフィス業務やリサーチ業務における手動の転記作業などが不要になり、ブラウザそのものが自律的な業務遂行プラットフォームへと変貌を遂げます。</p>
+        <p>今回のアップデートでは、業務向けCopilotアプリにOffice機能が直接統合され、チャット機能と自律的な業務遂行機能が1つの画面にシームレスに集約された。新機能の「Workspaces」などでは、人とAIエージェントが同じ画面上で協働し、複雑なタスクを並行して処理できるよう設計されている。競合製品と比較してコストパフォーマンスに優れつつ、実務に直結する機能拡張が図られている。</p>
       </div>
 
       <div class="block">
@@ -484,17 +484,17 @@
           
           <div class="flow-step">
             <span class="flow-num">STEP 1</span>
-            複数サイトの往復やデータ転記といった分断作業が、ナレッジワーカーの大きな時間的ロスになっていた
+            CopilotにOffice機能とWorkspacesが統合される
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 2</span>
-            EdgeのAIエージェントが複数サイトにまたがるタスクの文脈を理解し、一貫して自動実行する仕組みを構築した
+            ユーザーとAIエージェントが同一画面で協働可能になる
           </div>
           
           <div class="flow-step">
             <span class="flow-num">STEP 3</span>
-            エンドユーザーはブラウザを指示するだけで複雑な業務を完了させることが可能になり、作業効率が劇的に向上する
+            日常業務の分断が解消され、組織全体でAIの生産性が飛躍的に向上する
           </div>
           
         </div>
@@ -503,35 +503,35 @@
       
       <div class="glossary">
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-2-1')">📘 AIエージェント</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-1')">📘 Ignite</button>
         
-        <button class="chip" onclick="toggleGlossary(this, 'g-2-2')">📘 マルチサイト横断</button>
+        <button class="chip" onclick="toggleGlossary(this, 'g-2-2')">📘 エージェント</button>
         
       </div>
       
       <div id="g-2-1" class="glossary-box">
-        <strong>AIエージェント：</strong>人間の指示を受けて、自律的に判断しタスクの計画・実行を行うAIプログラムのこと。
+        <strong>Ignite：</strong>MicrosoftがITプロフェッショナルや開発者向けに毎年開催する世界最大級のテクニカルカンファレンス。
       </div>
       
       <div id="g-2-2" class="glossary-box">
-        <strong>マルチサイト横断：</strong>単一のWebページだけでなく、複数の異なるサービスやサイトの情報を連携させて処理すること。
+        <strong>エージェント：</strong>人間の指示を受けて自律的に判断し、データの収集やタスクの実行を行う高度なAIプログラム。
       </div>
       
       
 
       <div class="contrarian">
         <div class="block-title">⚡ 逆張り・リスク・実務上の注意点</div>
-        <p>自動化の範囲が広がることで、意図しない誤操作や機密情報の意図しない送信といったセキュリティ上のリスクが懸念されます。実務導入の際は、エージェントが実行するアクションの監査ログや適切な権限管理の設計が不可欠です。</p>
+        <p>機能が多岐にわたる一方で、エンドユーザーが新しいUIや操作フローに適応しきれず、社内サポートへの問い合わせが急増するリスクがある。事前にパイロットグループを組織した段階的な展開が成功の鍵となる。</p>
       </div>
 
       <textarea hidden id="ai-prompt-dd-2">以下のニュースについて深掘りして壁打ちしたいです。
 
-【タイトル】Microsoft Edgeに登場したAIエージェント：複数サイト横断自動化の衝撃
+【タイトル】Microsoft Ignite 2026で発表された「Copilot」の次世代ワークスペース機能
 【カテゴリ】Microsoft AI・クラウド・モダンワーク
-【前提・あらすじ】生成AIの活用は、単なるテキストの要約やチャット対話の域を脱し、ユーザーの代わりにブラウザ操作やタスクを遂行する「AIエージェント」のフェーズへと移行しつつあります。従来のブラウザ機能は、あくまでユーザーが手動で複数タブを行き来しながら情報を収集・入力することが前提でした。しかし、複雑な業務フローにおいては、この「人間による分断された作業」が生産性の限界を生んでいました。
-【構造・要点】Microsoft Edgeに新たに実装されたAIエージェント機能は、複数のWebサイトやシステムにまたがる一連の作業を自動で遂行する能力を備えています。単一のページの読み込みや要約にとどまらず、ユーザーの指示に基づいて複数サイト間でのデータ突合や手続きのステップを連続して実行します。これにより、バックオフィス業務やリサーチ業務における手動の転記作業などが不要になり、ブラウザそのものが自律的な業務遂行プラットフォームへと変貌を遂げます。
-【注意点・逆張り視点】自動化の範囲が広がることで、意図しない誤操作や機密情報の意図しない送信といったセキュリティ上のリスクが懸念されます。実務導入の際は、エージェントが実行するアクションの監査ログや適切な権限管理の設計が不可欠です。
-【元記事URL】https://news.google.com/rss/articles/CBMiaEFVX3lxTE9LNjdHUFM1bzh1Nl8zUTFxUFJXSkgzcTFIc3d6WUdjR1BLbUdVZ0FYUFU5TS1rdnFuSkdIU3FHcVJicG1wVXB2NDVwMzhMQ3ZDTXQ5MEtyLS1QZ2M5bnlOazFYOENORG5k?oc=5
+【前提・あらすじ】Microsoftは年次カンファレンス「Ignite 2026」において、Copilotを単なるチャットアシスタントから「仕事の新しいOS」へと進化させる重大なアップデートを発表した。これまでのアプリ個別の利用や手動での切り替え作業が、ユーザーの業務効率を分断しているという課題があった。組織におけるAI活用の定着率をさらに高めるための抜本的な刷新が求められていた。
+【構造・要点】今回のアップデートでは、業務向けCopilotアプリにOffice機能が直接統合され、チャット機能と自律的な業務遂行機能が1つの画面にシームレスに集約された。新機能の「Workspaces」などでは、人とAIエージェントが同じ画面上で協働し、複雑なタスクを並行して処理できるよう設計されている。競合製品と比較してコストパフォーマンスに優れつつ、実務に直結する機能拡張が図られている。
+【注意点・逆張り視点】機能が多岐にわたる一方で、エンドユーザーが新しいUIや操作フローに適応しきれず、社内サポートへの問い合わせが急増するリスクがある。事前にパイロットグループを組織した段階的な展開が成功の鍵となる。
+【元記事URL】https://news.google.com/rss/articles/CBMiUEFVX3lxTFB5SFI5MFBaUVNFbnZIZjhURXRnZTJlNGxDUWtwdU5BSFlSTGNNb2YxNTdXb21zQ2k5ZWd3QnJfelhnVEFXR1ptNExJN2p2SmRR?oc=5
 
 上記を踏まえて、以下の観点でさらに踏み込んで解説してください。
 1. エンタープライズ環境（Microsoft 365 / Azure / Intune / Entra ID等）の実務・設計への具体的な影響
@@ -539,10 +539,10 @@
 3. 次に私が深掘り・確認すべき論点（3つ）</textarea>
 
       <div class="card-footer">
-        <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9LNjdHUFM1bzh1Nl8zUTFxUFJXSkgzcTFIc3d6WUdjR1BLbUdVZ0FYUFU5TS1rdnFuSkdIU3FHcVJicG1wVXB2NDVwMzhMQ3ZDTXQ5MEtyLS1QZ2M5bnlOazFYOENORG5k?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
+        <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTFB5SFI5MFBaUVNFbnZIZjhURXRnZTJlNGxDUWtwdU5BSFlSTGNNb2YxNTdXb21zQ2k5ZWd3QnJfelhnVEFXR1ptNExJN2p2SmRR?oc=5" target="_blank" rel="noopener">元記事を読む ↗</a>
         <div class="footer-actions">
           <button class="ai-btn" onclick="openDeepDive('ai-prompt-dd-2')">🤖 AIで深掘り</button>
-          <button class="memo-btn" data-title="Microsoft Edgeに登場したAIエージェント：複数サイト横断自動化の衝撃" data-url="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9LNjdHUFM1bzh1Nl8zUTFxUFJXSkgzcTFIc3d6WUdjR1BLbUdVZ0FYUFU5TS1rdnFuSkdIU3FHcVJicG1wVXB2NDVwMzhMQ3ZDTXQ5MEtyLS1QZ2M5bnlOazFYOENORG5k?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
+          <button class="memo-btn" data-title="Microsoft Ignite 2026で発表された「Copilot」の次世代ワークスペース機能" data-url="https://news.google.com/rss/articles/CBMiUEFVX3lxTFB5SFI5MFBaUVNFbnZIZjhURXRnZTJlNGxDUWtwdU5BSFlSTGNNb2YxNTdXb21zQ2k5ZWd3QnJfelhnVEFXR1ptNExJN2p2SmRR?oc=5" onclick="toggleMemo(this)">🔖 メモに追加</button>
         </div>
       </div>
     </article>
@@ -557,26 +557,26 @@
           <div class="card-meta">
             <span class="badge badge-ms">MS小ネタ</span>
           </div>
-          <h3 class="radar-title">ExcelのWindows版に数式エラーの原因・解決カードが追加</h3>
-          <p class="radar-body">Excelの2026年11月更新により、Mac版に先行していた数式エラーの解説・解決カード機能がWindows版にも導入されました。エラーセルを選択するだけで、原因の特定と具体的な修正手順がポップアップで提示されます。初心者からベテラン管理者まで、表計算のトラブルシューティング工数を大幅に削減します。</p>
-          <div class="radar-why"><strong>なぜ今話題？：</strong>日常業務で頻繁に使用されるExcelの仕様変更であり、問い合わせ対応や社内サポートの負荷軽減につながるため今すぐ把握すべきアップデートです。</div>
+          <h3 class="radar-title">Exchange Onlineで「Reject Direct Send」が一般提供（GA）開始</h3>
+          <p class="radar-body">プリンターや業務アプライアンスからの直接送信（Direct Send）を拒否する設定が正式にGA。セキュリティ強化のため従来の認証なしメール送信の見直しが必須。管理者は自社システムの送信経路の点検が急務。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>不正なスプーフィングや脆弱性を突いたメール送信を根本からブロックするため。</div>
         </div>
 
         <textarea hidden id="ai-prompt-qr-1">以下のトピックについて、もう少し詳しく教えてください。
 
-【タイトル】ExcelのWindows版に数式エラーの原因・解決カードが追加
+【タイトル】Exchange Onlineで「Reject Direct Send」が一般提供（GA）開始
 【カテゴリ】MS小ネタ
-【概要】Excelの2026年11月更新により、Mac版に先行していた数式エラーの解説・解決カード機能がWindows版にも導入されました。エラーセルを選択するだけで、原因の特定と具体的な修正手順がポップアップで提示されます。初心者からベテラン管理者まで、表計算のトラブルシューティング工数を大幅に削減します。
-【なぜ今話題か】日常業務で頻繁に使用されるExcelの仕様変更であり、問い合わせ対応や社内サポートの負荷軽減につながるため今すぐ把握すべきアップデートです。
-【元記事URL】https://news.google.com/rss/articles/CBMiaEFVX3lxTE1sRGNWbmZHWG8xeFY4eGcyQjJzNzM3S1BDR3JBbUV5S1BnRDlfQWx1d3AwSjVBUjlmLXdING5peGptRl8xUUFwRkxDMVdNTVM3NXk2WlZ5azFDbUxmWGpxVV8tRnNGNVZ2?oc=5
+【概要】プリンターや業務アプライアンスからの直接送信（Direct Send）を拒否する設定が正式にGA。セキュリティ強化のため従来の認証なしメール送信の見直しが必須。管理者は自社システムの送信経路の点検が急務。
+【なぜ今話題か】不正なスプーフィングや脆弱性を突いたメール送信を根本からブロックするため。
+【元記事URL】https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787
 
 前提知識がなくてもわかるように背景を整理したうえで、今後注目すべきポイントを3点挙げてください。</textarea>
 
         <div class="card-footer">
-          <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1sRGNWbmZHWG8xeFY4eGcyQjJzNzM3S1BDR3JBbUV5S1BnRDlfQWx1d3AwSjVBUjlmLXdING5peGptRl8xUUFwRkxDMVdNTVM3NXk2WlZ5azFDbUxmWGpxVV8tRnNGNVZ2?oc=5" target="_blank" rel="noopener">元記事 ↗</a>
+          <a href="https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787" target="_blank" rel="noopener">元記事 ↗</a>
           <div class="footer-actions">
             <button class="ai-btn" onclick="openDeepDive('ai-prompt-qr-1')">🤖 深掘り</button>
-            <button class="memo-btn" data-title="ExcelのWindows版に数式エラーの原因・解決カードが追加" data-url="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1sRGNWbmZHWG8xeFY4eGcyQjJzNzM3S1BDR3JBbUV5S1BnRDlfQWx1d3AwSjVBUjlmLXdING5peGptRl8xUUFwRkxDMVdNTVM3NXk2WlZ5azFDbUxmWGpxVV8tRnNGNVZ2?oc=5" onclick="toggleMemo(this)">🔖 メモ</button>
+            <button class="memo-btn" data-title="Exchange Onlineで「Reject Direct Send」が一般提供（GA）開始" data-url="https://techcommunity.microsoft.com/t5/exchange-team-blog/reject-direct-send-now-generally-available-in-exchange-online/ba-p/4573787" onclick="toggleMemo(this)">🔖 メモ</button>
           </div>
         </div>
       </article>
@@ -586,26 +586,26 @@
           <div class="card-meta">
             <span class="badge badge-ms">MS小ネタ</span>
           </div>
-          <h3 class="radar-title">Microsoft Azure API Managementの脆弱性悪用事案に注意</h3>
-          <p class="radar-body">Microsoft Azure API Managementを標的とした脆弱性がサイバー攻撃に悪用され、欧州のエネルギー企業などが実被害を受ける事案が発生しました。クラウドインフラの中核を担うAPI基盤のセキュリティ設定やパッチ適用の重要性が改めて浮き彫りになっています。管理者は直ちに最新のセキュリティ情報を確認し、環境の点検を行う必要があります。</p>
-          <div class="radar-why"><strong>なぜ今話題？：</strong>重要インフラ企業での実際の被害が確認されており、クラウド環境全体のセキュリティリスクを見直す緊急の契機となっているためです。</div>
+          <h3 class="radar-title">iOS/iPadOSのBYOD向けに「Webベースのデバイス登録」が推奨</h3>
+          <p class="radar-body">個人所有端末（BYOD）をIntuneに登録する際、専用アプリを必須としないWebベースの登録方法が推奨化。ユーザーのプライバシー配慮と管理負荷軽減を両立。導入企業のセットアップ手順に影響を与える。</p>
+          <div class="radar-why"><strong>なぜ今話題？：</strong>リモートワークや柔軟な働き方において、BYODのセキュリティ担保手法が変化しているため。</div>
         </div>
 
         <textarea hidden id="ai-prompt-qr-2">以下のトピックについて、もう少し詳しく教えてください。
 
-【タイトル】Microsoft Azure API Managementの脆弱性悪用事案に注意
+【タイトル】iOS/iPadOSのBYOD向けに「Webベースのデバイス登録」が推奨
 【カテゴリ】MS小ネタ
-【概要】Microsoft Azure API Managementを標的とした脆弱性がサイバー攻撃に悪用され、欧州のエネルギー企業などが実被害を受ける事案が発生しました。クラウドインフラの中核を担うAPI基盤のセキュリティ設定やパッチ適用の重要性が改めて浮き彫りになっています。管理者は直ちに最新のセキュリティ情報を確認し、環境の点検を行う必要があります。
-【なぜ今話題か】重要インフラ企業での実際の被害が確認されており、クラウド環境全体のセキュリティリスクを見直す緊急の契機となっているためです。
-【元記事URL】https://news.google.com/rss/articles/CBMiqAFBVV95cUxOdXN4QVZYdndJVzM3VXdBR1V1eWFqcGNUSFMzRTFpNEVRRk80aFk3bFc0cFhxR0tjZEZzeTlwOUF4VDlDSEJpUXJYeVVXQlF0SFhuMnpCS2o3cVNnanlIX1Y2U3NuX3J6YURTaVJ2TkhHcjBjb1E3RnFjWlZKRVlxN1BnbkNGYk1sYVFTSF96QW8yNGh4NVZFcGJVM1JmN3dDNHV6MVR6Q2s?oc=5
+【概要】個人所有端末（BYOD）をIntuneに登録する際、専用アプリを必須としないWebベースの登録方法が推奨化。ユーザーのプライバシー配慮と管理負荷軽減を両立。導入企業のセットアップ手順に影響を与える。
+【なぜ今話題か】リモートワークや柔軟な働き方において、BYODのセキュリティ担保手法が変化しているため。
+【元記事URL】https://techcommunity.microsoft.com/t5/intune-customer-success/use-web-based-device-enrollment-for-byod-enrollment-on-ios/ba-p/4576027
 
 前提知識がなくてもわかるように背景を整理したうえで、今後注目すべきポイントを3点挙げてください。</textarea>
 
         <div class="card-footer">
-          <a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxOdXN4QVZYdndJVzM3VXdBR1V1eWFqcGNUSFMzRTFpNEVRRk80aFk3bFc0cFhxR0tjZEZzeTlwOUF4VDlDSEJpUXJYeVVXQlF0SFhuMnpCS2o3cVNnanlIX1Y2U3NuX3J6YURTaVJ2TkhHcjBjb1E3RnFjWlZKRVlxN1BnbkNGYk1sYVFTSF96QW8yNGh4NVZFcGJVM1JmN3dDNHV6MVR6Q2s?oc=5" target="_blank" rel="noopener">元記事 ↗</a>
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/use-web-based-device-enrollment-for-byod-enrollment-on-ios/ba-p/4576027" target="_blank" rel="noopener">元記事 ↗</a>
           <div class="footer-actions">
             <button class="ai-btn" onclick="openDeepDive('ai-prompt-qr-2')">🤖 深掘り</button>
-            <button class="memo-btn" data-title="Microsoft Azure API Managementの脆弱性悪用事案に注意" data-url="https://news.google.com/rss/articles/CBMiqAFBVV95cUxOdXN4QVZYdndJVzM3VXdBR1V1eWFqcGNUSFMzRTFpNEVRRk80aFk3bFc0cFhxR0tjZEZzeTlwOUF4VDlDSEJpUXJYeVVXQlF0SFhuMnpCS2o3cVNnanlIX1Y2U3NuX3J6YURTaVJ2TkhHcjBjb1E3RnFjWlZKRVlxN1BnbkNGYk1sYVFTSF96QW8yNGh4NVZFcGJVM1JmN3dDNHV6MVR6Q2s?oc=5" onclick="toggleMemo(this)">🔖 メモ</button>
+            <button class="memo-btn" data-title="iOS/iPadOSのBYOD向けに「Webベースのデバイス登録」が推奨" data-url="https://techcommunity.microsoft.com/t5/intune-customer-success/use-web-based-device-enrollment-for-byod-enrollment-on-ios/ba-p/4576027" onclick="toggleMemo(this)">🔖 メモ</button>
           </div>
         </div>
       </article>
@@ -615,8 +615,8 @@
 
     <div class="section-label">Cross Analysis — 編集長コラム</div>
     <section class="column-card">
-      <h2 class="article-title">管理者の負荷軽減と自動化がもたらすMicrosoftエコシステムの現在地</h2>
-      <p style="margin:0;">本日のニュースでは、Intuneによる柔軟なBYOD管理やEdgeのAIエージェントによる自動化など、IT管理者とエンドユーザー双方の負担を軽減する進化が際立っています。かつては個別の手動設定や専用アプリの強制が必要だった領域が、WebベースやAIの文脈理解によってシームレスに統合されつつあります。一方で、利便性の裏に潜む脆弱性やセキュリティリスクへの対策も同時に求められており、実務においては効率化とガバナンスのバランスをいかに取るかが重要なエンジニアリング課題となっています。</p>
+      <h2 class="article-title">クラウド管理の高度化とAIエージェントの融合がもたらす新しいIT運用の形</h2>
+      <p style="margin:0;">本日はIntuneによるサーバー管理やExchangeのセキュリティ強化といった堅実な基盤アップデートと、Ignite 2026で発表されたCopilotの新機能というモダンワークの進化が同時に報じられました。一見すると別々の領域に見えますが、これらは「インフラのクラウド集約」と「AIによる業務の自動化」という1つの大きなトレンドで繋がっています。管理者はセキュリティとガバナンスをしっかりと担保しつつ、最先端のAIエージェントを現場に定着させる二刀流のスキルが求められています。</p>
     </section>
   </main>
 
@@ -689,7 +689,7 @@
     }
 
     function copyMemos() {
-      const lines = ["**📌 気になったトピック (2026/11/27 (Fri))**"];
+      const lines = ["**📌 気になったトピック (2026/11/28 (Sat))**"];
       for (const [title, url] of savedMemos.entries()) {
         lines.push(`- ${title}\n  ${url}`);
       }
